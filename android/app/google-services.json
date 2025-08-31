@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984123815169",
+    "project_id": "gharsat-ward",
+    "storage_bucket": "gharsat-ward.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984123815169:android:467fd16938e47b43891700",
+        "android_client_info": {
+          "package_name": "com.mr.gharsat_ward"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCztTNwv28LQ6Y2KOgRP3fws1wYjMsVJtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

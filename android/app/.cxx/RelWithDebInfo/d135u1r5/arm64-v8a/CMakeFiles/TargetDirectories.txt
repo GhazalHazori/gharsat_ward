@@ -1,0 +1,2 @@
+C:/Projects/Flutter/working/FreeLance/User app/User app/android/app/.cxx/RelWithDebInfo/d135u1r5/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Projects/Flutter/working/FreeLance/User app/User app/android/app/.cxx/RelWithDebInfo/d135u1r5/arm64-v8a/CMakeFiles/rebuild_cache.dir
