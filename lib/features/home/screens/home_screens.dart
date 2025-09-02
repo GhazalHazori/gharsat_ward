@@ -48,6 +48,7 @@ import 'package:gharsat_ward/utill/color_resources.dart';
 import 'package:gharsat_ward/utill/custom_themes.dart';
 import 'package:gharsat_ward/utill/dimensions.dart';
 import 'package:gharsat_ward/utill/images.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -102,6 +103,7 @@ class HomePage extends StatefulWidget {
     shopController.getTopSellerList(reload, 1, type: "top");
 
     shopController.getAllSellerList(reload, 1, type: "all");
+      walletController.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
 
     if (addressController.addressList == null ||
         (addressController.addressList != null &&
@@ -175,6 +177,10 @@ class _HomePageState extends State<HomePage> {
       Provider.of<FeaturedDealController>(context, listen: false)
           .changeShippingMethod(1);
     });
+     Future.microtask(() {
+    Provider.of<WalletController>(context, listen: false)
+        .getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+  });
     // mr_edit
     // WidgetsBinding.instance.addPostFrameCallback((_) async {
     //   cityController = Provider.of<CityController>(context, listen: false);
@@ -351,17 +357,17 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Consumer<WalletController>(
                                             builder: (context, cart, child) {
-                                              cart.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+                                         
                  String datedue = cart.walletTransactionModel?.walletTransactionList == null
-    ? "لا يوجد تاريخ استحقاق"
+    ? "..."
     : (() {
-        // تحويل الـ String إلى DateTime
+      
         DateTime createdAt = DateTime.parse(
             cart.walletTransactionModel!.walletTransactionList!.last.createdAt!);
-        // إضافة 15 يوم
+       
         DateTime dueDate = createdAt.add(Duration(days: 15));
-        // تحويل التاريخ مرة أخرى إلى String إذا أحببت
-        return dueDate.toString(); // أو استخدم DateFormat لتنسيق أفضل
+      
+      return DateFormat('yyyy-MM-dd').format(dueDate); 
       })();
 
                                           return Row(
@@ -372,7 +378,7 @@ class _HomePageState extends State<HomePage> {
                                                     color: ColorResources.black,
                                                     fontSize: 12,
                                                   )),
-                                                   cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
+                                                  //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
                           
                                             ],
                                           );
@@ -402,7 +408,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        "${getTranslated('creditt', context)!}\n${profileProvider.balance}",
+                                        "${getTranslated('creditt', context)!}\n${profileProvider.balance??''}",
                                         style: textBold.copyWith(
                                           color: const Color.fromARGB(
                                               255, 210, 139, 33),
