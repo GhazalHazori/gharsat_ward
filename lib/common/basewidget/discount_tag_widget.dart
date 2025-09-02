@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gharsat_ward/helper/price_converter.dart';
 import 'package:gharsat_ward/localization/controllers/localization_controller.dart';
 import 'package:gharsat_ward/utill/custom_themes.dart';
 import 'package:gharsat_ward/utill/dimensions.dart';

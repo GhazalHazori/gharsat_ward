@@ -2,7 +2,7 @@ name: gharsat_ward
 description: A new Flutter setup application for starting a project.
 
 publish_to: "none"
-version: 1.0.0+0
+version: 1.0.0+1
 environment:
   sdk: ">=3.2.1 <4.0.0"
 
@@ -95,11 +95,12 @@ dependencies:
   open_file:
   printing:
 
+
 dev_dependencies:
   flutter_lints: ^3.0.1
   drift_dev: ^2.26.1
   build_runner: ^2.4.15
-  flutter_launcher_icons: ^0.13.1 
+  flutter_launcher_icons: ^0.13.1
 
   flutter_test:
     sdk: flutter

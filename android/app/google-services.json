@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "984123815169",
-    "project_id": "gharsat-ward",
-    "storage_bucket": "gharsat-ward.firebasestorage.app"
+    "project_number": "771322263956",
+    "project_id": "gharsat-dinspire",
+    "storage_bucket": "gharsat-dinspire.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:984123815169:android:467fd16938e47b43891700",
+        "mobilesdk_app_id": "1:771322263956:android:bb9704469c6116bc677781",
         "android_client_info": {
-          "package_name": "com.mr.gharsat_ward"
+          "package_name": "ca.dinspire.gharsat"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCztTNwv28LQ6Y2KOgRP3fws1wYjMsVJtw"
+          "current_key": "AIzaSyCl-RfsE55yznQlI5fnnu5irZ5v889e86k"
         }
       ],
       "services": {

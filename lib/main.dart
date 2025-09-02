@@ -71,36 +71,25 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
 
-  // mr_edit
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  // mr_edit
-  if (!kIsWeb) {
-    await FlutterDownloader.initialize(
-      debug: true, // Set to false in production
-      ignoreSsl: true, // Only for testing purposes, remove in production
-    );
-  }
+
+      await Firebase.initializeApp();
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+
   await di.init();
 
-  flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.requestNotificationsPermission();
+  flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
 
   NotificationBody? body;
   try {
-    final RemoteMessage? remoteMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+    final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
     if (remoteMessage != null) {
       body = NotificationHelper.convertNotification(remoteMessage.data);
     }
     await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-  } catch (_) {
-    //
-  }
+  }catch(_) {}
+
+
 
   // await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
   // FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);

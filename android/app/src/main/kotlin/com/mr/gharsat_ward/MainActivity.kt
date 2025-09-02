@@ -1,4 +1,4 @@
-package com.mr.gharsat_ward
+package ca.dinspire.gharsat
 
 import io.flutter.embedding.android.FlutterActivity
 

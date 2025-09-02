@@ -278,8 +278,8 @@ class CartScreenState extends State<CartScreen> {
                                   onTap: () {
                                     final preInvoiceCtrl =
                                         Provider.of<PreInvoiceController>(
-                                            context,   
-                            
+                                            context,
+
                                             listen: false);
                                              Provider.of<ShippingController>(
                                                         context,
@@ -293,7 +293,7 @@ class CartScreenState extends State<CartScreen> {
                                                     .shippingList?[
                                                         0]
                                                     .shippingMethodList?[
-                                                        cartList.last.productInfo!.shippingMethod!.id==1?0:1]
+                                                        cartList.last.productInfo!.shippingMethod?.id==1?0:1]
                                                     .id;
                                                 shipping.duration =
                                                    'all_cart_group' ;
@@ -935,7 +935,7 @@ class CartScreenState extends State<CartScreen> {
                                   ),
                                 ),
                               ),
-                              
+
                               // (!onlyDigital &&
                               //         configProvider
                               //                 .configModel!.shippingMethod !=

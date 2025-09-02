@@ -3,7 +3,7 @@ import 'package:gharsat_ward/utill/images.dart';
 
 class AppConstants {
   static const String appName = 'Gharsat Ward';
-  static const String slogan = 'E-Commerce Marketplace';
+  static const String slogan = 'E-Commerce App';
   static const String appVersion = '15.1';
 
   ///Flutter SDK 3.27.4
