@@ -208,79 +208,79 @@ class _ShopInfoWidgetState extends State<ShopInfoWidget> {
                                                                   .hintColor))
                                                 ]))
                                           ]))),
-                              InkWell(
-                                  onTap: () {
-                                    if (!Provider.of<AuthController>(context,
-                                            listen: false)
-                                        .isLoggedIn()) {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (_) =>
-                                              const NotLoggedInBottomSheetWidget());
-                                    } else if (seller.sellerInfoModel != null &&
-                                        ((seller.sellerInfoModel?.seller?.shop
-                                                    ?.temporaryClose ??
-                                                false) ||
-                                            (seller.sellerInfoModel?.seller
-                                                    ?.shop?.vacationStatus ??
-                                                false))) {
-                                      showCustomSnackBar(
-                                          "${getTranslated("this_shop_is_close_now", context)}",
-                                          context);
-                                    } else if (seller.sellerInfoModel != null) {
-                                      if (seller.sellerInfoModel?.seller !=
-                                          null) {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => ChatScreen(
-                                                      id: seller
-                                                          .sellerInfoModel!
-                                                          .seller!
-                                                          .id,
-                                                      name: seller
-                                                          .sellerInfoModel!
-                                                          .seller!
-                                                          .shop!
-                                                          .name,
-                                                      userType: 1,
-                                                      image: seller
-                                                              .sellerInfoModel!
-                                                              .seller!
-                                                              .shop!
-                                                              .imageFullUrl
-                                                              ?.path ??
-                                                          '',
-                                                    )));
-                                      } else {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => ChatScreen(
-                                                      id: 0,
-                                                      name: Provider.of<
-                                                                  SplashController>(
-                                                              context,
-                                                              listen: false)
-                                                          .configModel
-                                                          ?.companyName,
-                                                      userType: 1,
-                                                      image:
-                                                          "${Provider.of<SplashController>(context, listen: false).configModel?.companyFavIcon?.path}",
-                                                    )));
-                                      }
-                                    }
-                                  },
-                                  child: Container(
-                                      padding: const EdgeInsets.all(
-                                          Dimensions.paddingSizeExtraSmall),
-                                      decoration: BoxDecoration(
-                                          color: Theme.of(context).canvasColor,
-                                          borderRadius: BorderRadius.circular(
-                                              Dimensions
-                                                  .paddingSizeExtraSmall)),
-                                      child: Image.asset(Images.chatImage,
-                                          height: Dimensions.iconSizeDefault))),
+                              // InkWell(
+                              //     onTap: () {
+                              //       if (!Provider.of<AuthController>(context,
+                              //               listen: false)
+                              //           .isLoggedIn()) {
+                              //         showModalBottomSheet(
+                              //             context: context,
+                              //             builder: (_) =>
+                              //                 const NotLoggedInBottomSheetWidget());
+                              //       } else if (seller.sellerInfoModel != null &&
+                              //           ((seller.sellerInfoModel?.seller?.shop
+                              //                       ?.temporaryClose ??
+                              //                   false) ||
+                              //               (seller.sellerInfoModel?.seller
+                              //                       ?.shop?.vacationStatus ??
+                              //                   false))) {
+                              //         showCustomSnackBar(
+                              //             "${getTranslated("this_shop_is_close_now", context)}",
+                              //             context);
+                              //       } else if (seller.sellerInfoModel != null) {
+                              //         if (seller.sellerInfoModel?.seller !=
+                              //             null) {
+                              //           Navigator.push(
+                              //               context,
+                              //               MaterialPageRoute(
+                              //                   builder: (_) => ChatScreen(
+                              //                         id: seller
+                              //                             .sellerInfoModel!
+                              //                             .seller!
+                              //                             .id,
+                              //                         name: seller
+                              //                             .sellerInfoModel!
+                              //                             .seller!
+                              //                             .shop!
+                              //                             .name,
+                              //                         userType: 1,
+                              //                         image: seller
+                              //                                 .sellerInfoModel!
+                              //                                 .seller!
+                              //                                 .shop!
+                              //                                 .imageFullUrl
+                              //                                 ?.path ??
+                              //                             '',
+                              //                       )));
+                              //         } else {
+                              //           Navigator.push(
+                              //               context,
+                              //               MaterialPageRoute(
+                              //                   builder: (_) => ChatScreen(
+                              //                         id: 0,
+                              //                         name: Provider.of<
+                              //                                     SplashController>(
+                              //                                 context,
+                              //                                 listen: false)
+                              //                             .configModel
+                              //                             ?.companyName,
+                              //                         userType: 1,
+                              //                         image:
+                              //                             "${Provider.of<SplashController>(context, listen: false).configModel?.companyFavIcon?.path}",
+                              //                       )));
+                              //         }
+                              //       }
+                              //     },
+                              //     child: Container(
+                              //         padding: const EdgeInsets.all(
+                              //             Dimensions.paddingSizeExtraSmall),
+                              //         decoration: BoxDecoration(
+                              //             color: Theme.of(context).canvasColor,
+                              //             borderRadius: BorderRadius.circular(
+                              //                 Dimensions
+                              //                     .paddingSizeExtraSmall)),
+                              //         child: Image.asset(Images.chatImage,
+                              //             height: Dimensions.iconSizeDefault))),
                             ]),
                             const SizedBox(
                               height: Dimensions.paddingSizeExtraSmall,

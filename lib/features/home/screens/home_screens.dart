@@ -364,7 +364,7 @@ class _HomePageState extends State<HomePage> {
                                         Consumer<WalletController>(
                                             builder: (context, cart, child) {
                                          
-                 String datedue = cart.walletTransactionModel?.walletTransactionList == null
+                 String datedue = cart.walletTransactionModel?.walletTransactionList == null 
     ? "..."
     : (() {
       

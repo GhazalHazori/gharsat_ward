@@ -32,6 +32,23 @@ class InvoiceScreen extends StatefulWidget {
 class _InvoiceScreenState extends State<InvoiceScreen> {
   late final String invoiceNumber = "920"; // Fixed invoice number as in sample
   bool _requestedInvoice = false;
+String getOrderDate() {
+  DateTime now = DateTime.now();
+
+  // 9:00 PM
+  DateTime startTime = DateTime(now.year, now.month, now.day, 21, 0);
+  // 11:59:59 PM (قبل منتصف الليل بثانية)
+  DateTime endTime = DateTime(now.year, now.month, now.day, 23, 59, 59);
+
+  if (now.isAfter(startTime) && now.isBefore(endTime)) {
+    // اذا بين 9 و 12 المسا → التاريخ بكرة
+    DateTime tomorrow = now.add(Duration(days: 1));
+    return DateFormat('yyyy-MM-dd').format(tomorrow);
+  } else {
+    // باقي الأوقات → اليوم
+    return DateFormat('yyyy-MM-dd').format(now);
+  }
+}
 
 Future<pw.MemoryImage> _loadImage() async {
   try {
@@ -111,7 +128,8 @@ final headerImage = await _loadImage();
           invoiceNumber: invoiceNumber,
      
          image:headerImage,
-          dateOfSupply: '${cartCtrl.cartList.last.productInfo?.shippingMethod?.deliveryDate}',
+          dateOfSupply: '${  cartCtrl.cartList.last.productInfo?.shippingMethod?.id==1?getOrderDate():
+            cartCtrl.cartList.last.productInfo?.shippingMethod?.deliveryDate}',
           customerName: customerName,
           customerVatNo: customerVatNo,
           customerAddress: customerAddress,

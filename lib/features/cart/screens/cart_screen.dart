@@ -246,14 +246,15 @@ class CartScreenState extends State<CartScreen> {
                                                               .hintColor
                                                           : Theme.of(context)
                                                               .primaryColor)),
-                                          Text(
-                                              '${getTranslated('inc_vat_tax', context)}',
-                                              style: titilliumSemiBold.copyWith(
-                                                  fontSize:
-                                                      Dimensions.fontSizeExtraSmall,
-                                                  color: Theme.of(context)
-                                                      .hintColor)),
-                                        ]),
+                                          // Text(
+                                          //     '${getTranslated('inc_vat_tax', context)}',
+                                          //     style: titilliumSemiBold.copyWith(
+                                          //         fontSize:
+                                          //             Dimensions.fontSizeExtraSmall,
+                                          //         color: Theme.of(context)
+                                          //             .hintColor)),
+                                        ]
+                                        ),
                                         Text(
                                             PriceConverter.convertPrice(
                                                 context,
