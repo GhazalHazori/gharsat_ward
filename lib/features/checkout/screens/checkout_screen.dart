@@ -11,6 +11,8 @@ import 'package:gharsat_ward/features/invoice/screens/invoice_screen.dart';
 import 'package:gharsat_ward/features/offline_payment/screens/offline_payment_screen.dart';
 import 'package:gharsat_ward/features/profile/controllers/profile_contrroller.dart';
 import 'package:gharsat_ward/features/shipping/controllers/shipping_controller.dart';
+import 'package:gharsat_ward/features/wallet/controllers/wallet_controller.dart';
+import 'package:gharsat_ward/features/wallet/domain/repositories/wallet_repository.dart';
 import 'package:gharsat_ward/helper/price_converter.dart';
 import 'package:gharsat_ward/localization/language_constrants.dart';
 import 'package:gharsat_ward/main.dart';
@@ -105,6 +107,18 @@ class CheckoutScreenState extends State<CheckoutScreen> {
             .billingInputByCustomer ==
         1;
     Provider.of<CheckoutController>(context, listen: false).clearData();
+  //   Provider.of<AuthController>(Get.context!,
+  //                                 listen: false)
+  //                             .getUserToken() !=
+  //                         ""
+  //                     ?
+  //         Future.microtask(() {
+
+  //   Provider.of<WalletController>(context, listen: false)
+  //       .getOverdueTransactions(offset: 1,oldestUnpaid: 1);
+        
+
+  // }):null;
   }
 
   @override
@@ -286,6 +300,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                               _couponDiscount! +
                                               widget.tax,
                                           onTap: () {
+
+                                         
                                             if (profileProvider.balance! <
                                                 (_order +
                                                     widget.shippingFee -
@@ -311,7 +327,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                       billingAddressId,
                                                   orderNote: orderNote);
                                             }
-                                          }),
+                                          }
+                                          ),
                                       dismissible: false,
                                       willFlip: true);
                                 } else {

@@ -132,6 +132,35 @@ class WalletController extends ChangeNotifier {
 
     notifyListeners();
   }
+  //   Future<void> getOverdueTransactions({
+  //   required int offset,
+  //   int limit = 100,
+  //   int oldestUnpaid = 1,
+  // }) async {
+  //   _walletTransactionModel = null;
+  //   notifyListeners();
+
+  //   ApiResponse apiResponse = await walletServiceInterface.getList(
+  //     offset: offset,
+      
+  //     overdue: oldestUnpaid,
+  //   );
+
+  //   if (apiResponse.response?.data != null &&
+  //       apiResponse.response?.statusCode == 200) {
+  //     _walletTransactionModel =
+  //         WalletTransactionModel.fromJson(apiResponse.response?.data);
+
+  //     debugPrint(
+  //         '--------(OLDEST_UNPAID_TRANSACTIONS_LOADED)----count: ${_walletTransactionModel?.walletTransactionList?.length}');
+  //   } else {
+  //     _walletTransactionModel?.walletTransactionList = [];
+  //     ApiChecker.checkApi(apiResponse);
+  //   }
+
+  //   notifyListeners();
+  // }
+  
 
   Future<void> addFundToWallet(String amount, String paymentMethod) async {
     _isConvert = true;

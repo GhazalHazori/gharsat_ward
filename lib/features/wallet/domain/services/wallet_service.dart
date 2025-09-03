@@ -29,6 +29,7 @@ class WalletService implements WalletServiceInterface {
     DateTime? startDate,
     DateTime? endDate, int? oldestUnpaid,
     List<String>? transactionTypes,
+    
   }) async {
     return walletRepositoryInterface.getList(
         offset: offset,

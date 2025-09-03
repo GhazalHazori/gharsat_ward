@@ -13,6 +13,8 @@
   "flash_deal": "Exclusive",
   "brand": "Brands","catalog":"Catalog",
   "Deals":"Deals",
+  "login_required":"Login Required",
+  "need_procced":"You need to login before proceeding to checkout.",
   "invoice_details":"Invoice Details",
   "view_invoice":"View Invoice",
   "featured_products": "Featured Products",

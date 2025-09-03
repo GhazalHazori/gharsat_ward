@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gharsat_ward/common/basewidget/custom_loader_widget.dart';
+import 'package:gharsat_ward/features/auth/screens/login_screen.dart';
 import 'package:gharsat_ward/features/cart/domain/models/cart_model.dart';
 import 'package:gharsat_ward/features/invoice/controllers/invoice_controller.dart';
 
@@ -274,77 +275,98 @@ class CartScreenState extends State<CartScreen> {
                                                     Dimensions.fontSizeExtraSmall)),
                                       ]),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    final preInvoiceCtrl =
-                                        Provider.of<PreInvoiceController>(
-                                            context,   
-                            
-                                            listen: false);
-                                             Provider.of<ShippingController>(
-                                                        context,
-                                                        listen: false)
-                                                    .setSelectedShippingMethod(
-                                                     cartList.last.shippingMethodId   ,
-                                                        0);
-                                                ShippingMethodModel shipping =
-                                                    ShippingMethodModel();
-                                                shipping.id = shippingController
-                                                    .shippingList?[
-                                                        0]
-                                                    .shippingMethodList?[
-                                                        cartList.last.productInfo!.shippingMethod!.id==1?0:1]
-                                                    .id;
-                                                shipping.duration =
-                                                   'all_cart_group' ;
-                                                shippingController.isLoading
-                                                    ? const Center(
-                                                        child:
-                                                            CircularProgressIndicator())
-                                                    : shippingController
-                                                        .addShippingMethod(
-                                                            context,
-                                                            shipping.id,
-                                                            shipping.duration);
+                               InkWell(
+  onTap: () {
+    final authController = Provider.of<AuthController>(context, listen: false);
 
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => CheckoutScreen(
-                                                quantity: totalQuantity,
-                                                cartList: cartList,
-                                                totalOrderAmount: amount,
-                                                shippingFee: shippingAmount -
-                                                    freeDeliveryAmountDiscount,
-                                                discount: discount,
-                                                tax: tax,
-                                                onlyDigital:
-                                                    sellerGroupList.length !=
-                                                        totalPhysical,
-                                                hasPhysical:
-                                                    totalPhysical > 0)));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Theme.of(context).primaryColor,
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.paddingSizeSmall)),
-                                    child: Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal:
-                                                Dimensions.paddingSizeSmall,
-                                            vertical: Dimensions.fontSizeSmall),
-                                        child: Text(
-                                            getTranslated('checkout', context)!,
-                                            style: titilliumSemiBold.copyWith(
-                                                fontSize:
-                                                    Dimensions.fontSizeDefault,
-                                                color: Colors.white)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+   
+    if (authController.getUserToken().isEmpty) {
+     
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(   getTranslated('login_required', context)!,style: TextStyle(fontSize: 20),),
+          content: Text(   getTranslated('need_procced', context)!,style: TextStyle(fontSize: 12),),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx), // إغلاق
+              child: Text(   getTranslated('CANCEL', context)!),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx); 
+                // روح لصفحة تسجيل الدخول
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+              },
+              child: Text(   getTranslated('sign_in', context)!),
+            ),
+          ],
+        ),
+      );
+      return; 
+    }
+
+    
+    final preInvoiceCtrl = Provider.of<PreInvoiceController>(context, listen: false);
+
+    Provider.of<ShippingController>(context, listen: false)
+        .setSelectedShippingMethod(cartList.last.shippingMethodId, 0);
+
+    ShippingMethodModel shipping = ShippingMethodModel();
+    shipping.id = shippingController
+        .shippingList?[0]
+        .shippingMethodList?[
+            cartList.last.productInfo!.shippingMethod!.id == 1 ? 0 : 1]
+        .id;
+    shipping.duration = 'all_cart_group';
+
+    shippingController.isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : shippingController.addShippingMethod(
+            context, shipping.id, shipping.duration);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CheckoutScreen(
+          quantity: totalQuantity,
+          cartList: cartList,
+          totalOrderAmount: amount,
+          shippingFee: shippingAmount - freeDeliveryAmountDiscount,
+          discount: discount,
+          tax: tax,
+          onlyDigital: sellerGroupList.length != totalPhysical,
+          hasPhysical: totalPhysical > 0,
+        ),
+      ),
+    );
+  },
+  child: Container(
+    decoration: BoxDecoration(
+      color: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
+    ),
+    child: Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: Dimensions.paddingSizeSmall,
+          vertical: Dimensions.fontSizeSmall,
+        ),
+        child: Text(
+          getTranslated('checkout', context)!,
+          style: titilliumSemiBold.copyWith(
+            fontSize: Dimensions.fontSizeDefault,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ),
+  ),
+)
+
                               ])
                             : const SizedBox());
                   })

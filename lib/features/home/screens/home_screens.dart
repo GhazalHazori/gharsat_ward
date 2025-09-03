@@ -177,10 +177,16 @@ class _HomePageState extends State<HomePage> {
       Provider.of<FeaturedDealController>(context, listen: false)
           .changeShippingMethod(1);
     });
-     Future.microtask(() {
+ Provider.of<AuthController>(Get.context!,
+                                  listen: false)
+                              .getUserToken() !=
+                          ""
+                      ?
+          Future.microtask(() {
+
     Provider.of<WalletController>(context, listen: false)
         .getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
-  });
+  }):null;
     // mr_edit
     // WidgetsBinding.instance.addPostFrameCallback((_) async {
     //   cityController = Provider.of<CityController>(context, listen: false);
@@ -425,7 +431,12 @@ class _HomePageState extends State<HomePage> {
                       : SizedBox()),
 
               SliverToBoxAdapter(
-                  child: Provider.of<ProfileController>(context, listen: true).userInfoModel==null?
+                  child: Provider.of<AuthController>(Get.context!,
+                                  listen: false)
+                              .getUserToken() ==
+                          ""
+                      ?SizedBox():
+                  Provider.of<ProfileController>(context, listen: true).userInfoModel==null?
                    Center(child: CircularProgressIndicator()):
                   Center(
                       child: SizedBox(
@@ -540,7 +551,10 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ),
-                              ]))))),
+                              ]))
+                              ))
+                              )
+                              ,
 
               SliverToBoxAdapter(
                 child: Column(

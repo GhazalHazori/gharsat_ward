@@ -11,6 +11,7 @@ import 'package:gharsat_ward/features/splash/domain/models/config_model.dart';
 import 'package:gharsat_ward/features/support/screens/support_ticket_screen.dart';
 import 'package:gharsat_ward/features/wallet/controllers/wallet_controller.dart';
 import 'package:gharsat_ward/main.dart';
+
 import 'package:gharsat_ward/utill/app_constants.dart';
 import 'package:gharsat_ward/features/more/widgets/logout_confirm_bottom_sheet_widget.dart';
 import 'package:gharsat_ward/features/chat/screens/inbox_screen.dart';
@@ -33,6 +34,7 @@ import 'package:gharsat_ward/features/notification/screens/notification_screen.d
 import 'package:gharsat_ward/features/address/screens/address_list_screen.dart';
 import 'package:gharsat_ward/features/refer_and_earn/screens/refer_and_earn_screen.dart';
 import 'package:gharsat_ward/features/setting/screens/settings_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'faq_screen_view.dart';
 import 'package:gharsat_ward/features/more/widgets/title_button_widget.dart';
@@ -47,7 +49,9 @@ class _MoreScreenState extends State<MoreScreen> {
   late bool isGuestMode;
   String? version;
   bool singleVendor = false;
-
+  final walletController =
+        Provider.of<WalletController>(Get.context!, listen: false);
+       
   @override
   void initState() {
     isGuestMode =
@@ -63,7 +67,16 @@ class _MoreScreenState extends State<MoreScreen> {
     singleVendor = Provider.of<SplashController>(context, listen: false)
             .configModel!
             .businessMode ==
-        "single";
+        "single";Provider.of<AuthController>(Get.context!,
+                                  listen: false)
+                              .getUserToken() !=
+                          ""
+                      ?
+          Future.microtask(() {
+
+    Provider.of<WalletController>(context, listen: false)
+        .getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+  }):null;
 
     super.initState();
   }
@@ -89,75 +102,87 @@ class _MoreScreenState extends State<MoreScreen> {
           //     backgroundColor: Theme.of(context).highlightColor,
           //     collapsedHeight: 160,
           //     flexibleSpace: const ProfileInfoSectionWidget()),
-                SliverToBoxAdapter(child: Provider.of<AuthController>(Get.context!, listen: false).getUserToken()!=""? Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.only(left: 15,right: 15, top: 60),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 7,
-                          offset: const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                      border: Border.all(
-                        color: Colors.orange.shade300,
-                        width: 1.5,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                      
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                     SliverToBoxAdapter(
+                  child: Provider.of<AuthController>(Get.context!,
+                                  listen: false)
+                              .getUserToken() !=
+                          ""
+                      ? Container(
+                          padding: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 7),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
+                            border: Border.all(
+                              color: Colors.orange.shade300,
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Row(
                             children: [
-                            
-                          
-                             
-                   Row(
-                   
-                     children: [
-                      Text('${getTranslated('order_total', context)!}',  style:  textBold.copyWith(
-                                  color: ColorResources.black,
-                                  fontSize: 12,
-                                )),
-                                SizedBox(width: 20,),
-                       Consumer<CartController>(
-                              builder: (context, cart, child) {
-                            return Text(cart.cartList.length.toString(),
-                                style:  textBold.copyWith(
-                                  color: ColorResources.black,
-                                  fontSize: 12,
-                                )
-                                );
-                          }),
-                     ],
-                   ),
-                                     SizedBox(height: 5,),
-                   Row(
-                   
-                     children: [
-                      Text(  '${getTranslated('credit_limit', context)!}',style: textBold.copyWith(
-                                  color: ColorResources.black,
-                                  fontSize: 12,
-                                ) ,),   SizedBox(width: 20,),
-                     Consumer<WalletController>(
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text('${getTranslated('order_total', context)!}',
+                                            style: textBold.copyWith(
+                                              color: ColorResources.black,
+                                              fontSize: 12,
+                                            )),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Consumer<CartController>(
                                             builder: (context, cart, child) {
-                                              cart.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+                                          return Text(
+                                              cart.cartList.length.toString(),
+                                              style: textBold.copyWith(
+                                                color: ColorResources.black,
+                                                fontSize: 12,
+                                              ));
+                                        }),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '${getTranslated('credit_limit', context)!}',
+                                          style: textBold.copyWith(
+                                            color: ColorResources.black,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Consumer<WalletController>(
+                                            builder: (context, cart, child) {
+                                         
                  String datedue = cart.walletTransactionModel?.walletTransactionList == null
-    ? "لا يوجد تاريخ استحقاق"
+    ? "..."
     : (() {
-        // تحويل الـ String إلى DateTime
+      
         DateTime createdAt = DateTime.parse(
             cart.walletTransactionModel!.walletTransactionList!.last.createdAt!);
-        // إضافة 15 يوم
+       
         DateTime dueDate = createdAt.add(Duration(days: 15));
-        // تحويل التاريخ مرة أخرى إلى String إذا أحببت
-        return dueDate.toString(); // أو استخدم DateFormat لتنسيق أفضل
+      
+      return DateFormat('yyyy-MM-dd').format(dueDate); 
       })();
 
                                           return Row(
@@ -168,43 +193,51 @@ class _MoreScreenState extends State<MoreScreen> {
                                                     color: ColorResources.black,
                                                     fontSize: 12,
                                                   )),
-                                                   cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
+                                                  //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
                           
                                             ],
                                           );
                                         }),
-                     ],
-                   ),
-                  
-                                    
-                  //  Text( ' المتبقي: '),
-                  // Text(
-                  // '46,797.52',
-                  //   style: TextStyle(
-                  //     fontWeight: FontWeight.bold,
-                  //     color: Colors.blue.shade600,
-                  //   ),
-                  // ),
+                                      ],
+                                    ),
+
+                                    //  Text( ' المتبقي: '),
+                                    // Text(
+                                    // '46,797.52',
+                                    //   style: TextStyle(
+                                    //     fontWeight: FontWeight.bold,
+                                    //     color: Colors.blue.shade600,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
-                      if (!isGuestMode && configModel?.walletStatus == 1)         
-                        Consumer<ProfileController>(builder: (context, profileProvider, _) {return
-                              Container(padding: EdgeInsets.symmetric(horizontal: 15,vertical: 2),
-                                  decoration: BoxDecoration(color: const Color.fromARGB(255, 223, 226, 228),borderRadius: BorderRadius.circular(5)),child: Row(
+                              Consumer<ProfileController>(
+                                  builder: (context, profileProvider, _) {
+                                return Container(
+                               padding: EdgeInsets.symmetric(horizontal: 15,vertical: 2),
+                                  decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                          255, 223, 226, 228),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Row(
                                     children: [
-                                      Text(  "${getTranslated('creditt', context)!}\n${profileProvider.balance}",style:  textBold.copyWith(
-                                        color: const Color.fromARGB(255, 210, 139, 33),
-                                        fontSize: 12,
-                                      ),),  Image.asset(Images.saudiImage,color: Colors.black,width: 15,)
+                                      Text(
+                                        "${getTranslated('creditt', context)!}\n${profileProvider.balance??''}",
+                                        style: textBold.copyWith(
+                                          color: const Color.fromARGB(
+                                              255, 210, 139, 33),
+                                          fontSize: 12,
+                                        ),
+                                      ),  Image.asset(Images.saudiImage,color: Colors.black,width: 15,)
                                     ],
-                                  ),);}
-                              )
+                                  ),
+                                );
+                              })
                             ],
                           ),
-                        ):SizedBox(height: 30,)
-                    
-                    ),
+                        )
+                      : SizedBox()),
           SliverToBoxAdapter(
               child: Container(
             decoration:
