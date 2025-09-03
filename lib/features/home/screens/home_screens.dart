@@ -63,32 +63,32 @@ class HomePage extends StatefulWidget {
 
   static Future<void> loadData(bool reload) async {
     final flashDealController =
-        Provider.of<FlashDealController>(Get.context!, listen: false);
+    Provider.of<FlashDealController>(Get.context!, listen: false);
     final shopController =
-        Provider.of<ShopController>(Get.context!, listen: false);
+    Provider.of<ShopController>(Get.context!, listen: false);
     final categoryController =
-        Provider.of<CategoryController>(Get.context!, listen: false);
+    Provider.of<CategoryController>(Get.context!, listen: false);
     final bannerController =
-        Provider.of<BannerController>(Get.context!, listen: false);
+    Provider.of<BannerController>(Get.context!, listen: false);
     final addressController =
-        Provider.of<AddressController>(Get.context!, listen: false);
+    Provider.of<AddressController>(Get.context!, listen: false);
     final productController =
-        Provider.of<ProductController>(Get.context!, listen: false);
+    Provider.of<ProductController>(Get.context!, listen: false);
     final brandController =
-        Provider.of<BrandController>(Get.context!, listen: false);
+    Provider.of<BrandController>(Get.context!, listen: false);
     final featuredDealController =
-        Provider.of<FeaturedDealController>(Get.context!, listen: false);
+    Provider.of<FeaturedDealController>(Get.context!, listen: false);
     final notificationController =
-        Provider.of<NotificationController>(Get.context!, listen: false);
+    Provider.of<NotificationController>(Get.context!, listen: false);
     final cartController =
-        Provider.of<CartController>(Get.context!, listen: false);
+    Provider.of<CartController>(Get.context!, listen: false);
     final profileController =
-        Provider.of<ProfileController>(Get.context!, listen: false);
+    Provider.of<ProfileController>(Get.context!, listen: false);
     final splashController =
-        Provider.of<SplashController>(Get.context!, listen: false);
-         final walletController =
-        Provider.of<WalletController>(Get.context!, listen: false);
-        //  final profileCtrl = Provider.of<ProfileController>(Get.context!, listen: false);
+    Provider.of<SplashController>(Get.context!, listen: false);
+    final walletController =
+    Provider.of<WalletController>(Get.context!, listen: false);
+    //  final profileCtrl = Provider.of<ProfileController>(Get.context!, listen: false);
 
     if (flashDealController.flashDealList.isEmpty || reload) {
       await flashDealController.getFlashDealList(reload, false);
@@ -103,7 +103,7 @@ class HomePage extends StatefulWidget {
     shopController.getTopSellerList(reload, 1, type: "top");
 
     shopController.getAllSellerList(reload, 1, type: "all");
-      walletController.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+    walletController.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
 
     if (addressController.addressList == null ||
         (addressController.addressList != null &&
@@ -129,7 +129,7 @@ class HomePage extends StatefulWidget {
     productController.getRecommendedProduct();
 
     productController.getClearanceAllProductList('1');
-walletController.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+    walletController.getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
     if (notificationController.notificationModel == null ||
         (notificationController.notificationModel != null &&
             notificationController.notificationModel!.notification!.isEmpty) ||
@@ -155,17 +155,17 @@ class _HomePageState extends State<HomePage> {
   bool singleVendor = false;
   // mr_edit
   late CityController cityController;
-   
+
   int selectedTab = 0;
   String cityid="";
   @override
   void initState() {
     super.initState();
     singleVendor = Provider.of<SplashController>(context, listen: false)
-            .configModel!
-            .businessMode ==
+        .configModel!
+        .businessMode ==
         "single";      cityid=Provider.of<ProfileController>(context, listen: false).userInfoModel?.cityId??'';
-        // final profileCtrl = Provider.of<ProfileController>(Get.context!, listen: false);
+    // final profileCtrl = Provider.of<ProfileController>(Get.context!, listen: false);
 
 
     // Set initial shipping method to 1 since selectedTab starts at 0 (Express)
@@ -177,16 +177,16 @@ class _HomePageState extends State<HomePage> {
       Provider.of<FeaturedDealController>(context, listen: false)
           .changeShippingMethod(1);
     });
- Provider.of<AuthController>(Get.context!,
-                                  listen: false)
-                              .getUserToken() !=
-                          ""
-                      ?
-          Future.microtask(() {
+    Provider.of<AuthController>(Get.context!,
+        listen: false)
+        .getUserToken() !=
+        ""
+        ?
+    Future.microtask(() {
 
-    Provider.of<WalletController>(context, listen: false)
-        .getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
-  }):null;
+      Provider.of<WalletController>(context, listen: false)
+          .getOldestUnpaidTransactions(offset: 1,oldestUnpaid: 1);
+    }):null;
     // mr_edit
     // WidgetsBinding.instance.addPostFrameCallback((_) async {
     //   cityController = Provider.of<CityController>(context, listen: false);
@@ -260,21 +260,21 @@ class _HomePageState extends State<HomePage> {
             slivers: [
               SliverToBoxAdapter(
                   child: Provider.of<SplashController>(context, listen: false)
-                              .configModel!
-                              .announcement!
-                              .status ==
-                          '1'
+                      .configModel!
+                      .announcement!
+                      .status ==
+                      '1'
                       ? Consumer<SplashController>(
-                          builder: (context, announcement, _) {
-                          return (announcement.configModel!.announcement!
-                                          .announcement !=
-                                      null &&
-                                  announcement.onOff)
-                              ? AnnouncementWidget(
-                                  announcement:
-                                      announcement.configModel!.announcement)
-                              : const SizedBox();
-                        })
+                      builder: (context, announcement, _) {
+                        return (announcement.configModel!.announcement!
+                            .announcement !=
+                            null &&
+                            announcement.onOff)
+                            ? AnnouncementWidget(
+                            announcement:
+                            announcement.configModel!.announcement)
+                            : const SizedBox();
+                      })
                       : const SizedBox()),
 
               // التبويبات
@@ -295,153 +295,153 @@ class _HomePageState extends State<HomePage> {
 
               SliverToBoxAdapter(
                   child: Provider.of<AuthController>(Get.context!,
-                                  listen: false)
-                              .getUserToken() !=
-                          ""
+                      listen: false)
+                      .getUserToken() !=
+                      ""
                       ? Container(
-                          padding: const EdgeInsets.all(10),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 7),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 7,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
-                              ),
-                            ],
-                            border: Border.all(
-                              color: Colors.orange.shade300,
-                              width: 1.5,
-                            ),
-                          ),
-                          child: Row(
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 7),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 7,
+                          offset: const Offset(
+                              0, 3), // changes position of shadow
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Colors.orange.shade300,
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text('${getTranslated('order_total', context)!}',
+                              Row(
+                                children: [
+                                  Text('${getTranslated('order_total', context)!}',
+                                      style: textBold.copyWith(
+                                        color: ColorResources.black,
+                                        fontSize: 12,
+                                      )),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Consumer<CartController>(
+                                      builder: (context, cart, child) {
+                                        return Text(
+                                            cart.cartList.length.toString(),
                                             style: textBold.copyWith(
                                               color: ColorResources.black,
                                               fontSize: 12,
-                                            )),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Consumer<CartController>(
-                                            builder: (context, cart, child) {
-                                          return Text(
-                                              cart.cartList.length.toString(),
-                                              style: textBold.copyWith(
-                                                color: ColorResources.black,
-                                                fontSize: 12,
-                                              ));
-                                        }),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '${getTranslated('credit_limit', context)!}',
-                                          style: textBold.copyWith(
-                                            color: ColorResources.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Consumer<WalletController>(
-                                            builder: (context, cart, child) {
-                                         
-                 String datedue = cart.walletTransactionModel?.walletTransactionList == null
-    ? "..."
-    : (() {
-      
-        DateTime createdAt = DateTime.parse(
-            cart.walletTransactionModel!.walletTransactionList!.last.createdAt!);
-       
-        DateTime dueDate = createdAt.add(Duration(days: 15));
-      
-      return DateFormat('yyyy-MM-dd').format(dueDate); 
-      })();
-
-                                          return Row(
-                                            children: [
-                                              Text(
-                                                  datedue,
-                                                  style: textBold.copyWith(
-                                                    color: ColorResources.black,
-                                                    fontSize: 12,
-                                                  )),
-                                                  //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
-                          
-                                            ],
-                                          );
-                                        }),
-                                      ],
-                                    ),
-
-                                    //  Text( ' المتبقي: '),
-                                    // Text(
-                                    // '46,797.52',
-                                    //   style: TextStyle(
-                                    //     fontWeight: FontWeight.bold,
-                                    //     color: Colors.blue.shade600,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
+                                            ));
+                                      }),
+                                ],
                               ),
-                              Consumer<ProfileController>(
-                                  builder: (context, profileProvider, _) {
-                                return Container(
-                               padding: EdgeInsets.symmetric(horizontal: 15,vertical: 2),
-                                  decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                          255, 223, 226, 228),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "${getTranslated('creditt', context)!}\n${profileProvider.balance??''}",
-                                        style: textBold.copyWith(
-                                          color: const Color.fromARGB(
-                                              255, 210, 139, 33),
-                                          fontSize: 12,
-                                        ),
-                                      ),  Image.asset(Images.saudiImage,color: Colors.black,width: 15,)
-                                    ],
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    '${getTranslated('credit_limit', context)!}',
+                                    style: textBold.copyWith(
+                                      color: ColorResources.black,
+                                      fontSize: 12,
+                                    ),
                                   ),
-                                );
-                              })
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Consumer<WalletController>(
+                                      builder: (context, cart, child) {
+
+                                        String datedue = cart.walletTransactionModel?.walletTransactionList == null || cart.walletTransactionModel!.walletTransactionList!.isEmpty
+                                            ? "..."
+                                            : (() {
+
+                                          DateTime createdAt = DateTime.parse(
+                                              cart.walletTransactionModel!.walletTransactionList!.last.createdAt!);
+
+                                          DateTime dueDate = createdAt.add(Duration(days: 15));
+
+                                          return DateFormat('yyyy-MM-dd').format(dueDate);
+                                        })();
+
+                                        return Row(
+                                          children: [
+                                            Text(
+                                                datedue,
+                                                style: textBold.copyWith(
+                                                  color: ColorResources.black,
+                                                  fontSize: 12,
+                                                )),
+                                            //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
+
+                                          ],
+                                        );
+                                      }),
+                                ],
+                              ),
+
+                              //  Text( ' المتبقي: '),
+                              // Text(
+                              // '46,797.52',
+                              //   style: TextStyle(
+                              //     fontWeight: FontWeight.bold,
+                              //     color: Colors.blue.shade600,
+                              //   ),
+                              // ),
                             ],
                           ),
-                        )
+                        ),
+                        Consumer<ProfileController>(
+                            builder: (context, profileProvider, _) {
+                              return Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 2),
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 223, 226, 228),
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "${getTranslated('creditt', context)!}\n${profileProvider.balance??''}",
+                                      style: textBold.copyWith(
+                                        color: const Color.fromARGB(
+                                            255, 210, 139, 33),
+                                        fontSize: 12,
+                                      ),
+                                    ),  Image.asset(Images.saudiImage,color: Colors.black,width: 15,)
+                                  ],
+                                ),
+                              );
+                            })
+                      ],
+                    ),
+                  )
                       : SizedBox()),
 
               SliverToBoxAdapter(
                   child: Provider.of<AuthController>(Get.context!,
-                                  listen: false)
-                              .getUserToken() ==
-                          ""
+                      listen: false)
+                      .getUserToken() ==
+                      ""
                       ?SizedBox():
                   Provider.of<ProfileController>(context, listen: true).userInfoModel==null?
-                   Center(child: CircularProgressIndicator()):
+                  Center(child: CircularProgressIndicator()):
                   Center(
                       child: SizedBox(
                           width:
-                              ResponsiveHelper.isDesktop(context) ? 800 : null,
+                          ResponsiveHelper.isDesktop(context) ? 800 : null,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: Dimensions.paddingSizeDefault),
@@ -449,7 +449,7 @@ class _HomePageState extends State<HomePage> {
                                 // الخط الأساسي (الخلفي)
                                 Container(
                                   height:
-                                      40, // نفس ارتفاع الـ Containers الداخلية + margin
+                                  40, // نفس ارتفاع الـ Containers الداخلية + margin
                                   decoration: BoxDecoration(
                                       color:    Provider.of<ProfileController>(context, listen: true).userInfoModel?.cityId !="2"? Color.fromARGB(255, 255, 218, 164):Colors.transparent,
                                       borderRadius: BorderRadius.circular(10)),
@@ -465,17 +465,17 @@ class _HomePageState extends State<HomePage> {
                                               selectedTab = 0;
                                             });
                                             Provider.of<ProductController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(
-                                                    1); // Express shipping
+                                                1); // Express shipping
                                             Provider.of<FlashDealController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(1);
                                             Provider.of<FeaturedDealController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(1);
                                           },
                                           child: Container(
@@ -483,14 +483,14 @@ class _HomePageState extends State<HomePage> {
                                             decoration: BoxDecoration(
                                                 color: selectedTab == 0
                                                     ? const Color.fromARGB(
-                                                        255, 210, 139, 33)
+                                                    255, 210, 139, 33)
                                                     : Colors.transparent,
                                                 borderRadius:
-                                                    BorderRadius.circular(10)),
+                                                BorderRadius.circular(10)),
                                             child: Center(
                                               child: Text(
                                                 getTranslated(
-                                                        'Express', context) ??
+                                                    'Express', context) ??
                                                     '',
                                                 style: textMedium.copyWith(
                                                   color: selectedTab == 0
@@ -509,17 +509,17 @@ class _HomePageState extends State<HomePage> {
                                               selectedTab = 1;
                                             });
                                             Provider.of<ProductController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(
-                                                    2); // Pre-order shipping
+                                                2); // Pre-order shipping
                                             Provider.of<FlashDealController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(2);
                                             Provider.of<FeaturedDealController>(
-                                                    context,
-                                                    listen: false)
+                                                context,
+                                                listen: false)
                                                 .changeShippingMethod(2);
                                           },
                                           child: Visibility(visible: Provider.of<ProfileController>(context, listen: true).userInfoModel?.cityId !="2",
@@ -528,14 +528,14 @@ class _HomePageState extends State<HomePage> {
                                               decoration: BoxDecoration(
                                                   color: selectedTab == 1
                                                       ? const Color.fromARGB(
-                                                          255, 210, 139, 33)
+                                                      255, 210, 139, 33)
                                                       : Colors.transparent,
                                                   borderRadius:
-                                                      BorderRadius.circular(10)),
+                                                  BorderRadius.circular(10)),
                                               child: Center(
                                                 child: Text(
                                                   getTranslated(
-                                                          'pre Order', context) ??
+                                                      'pre Order', context) ??
                                                       '',
                                                   style: textMedium.copyWith(
                                                     color: selectedTab == 1
@@ -552,9 +552,8 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ]))
-                              ))
-                              )
-                              ,
+                      ))
+              ),
 
               SliverToBoxAdapter(
                 child: Column(
@@ -567,169 +566,169 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: Dimensions.paddingSizeDefault),
                     Consumer<FlashDealController>(
                         builder: (context, megaDeal, child) {
-                      print('FlashDeal: ${megaDeal.flashDeal}');
-                      print(
-                          'FlashDealList length: ${megaDeal.flashDealList.length}');
-                      return megaDeal.flashDeal == null
-                          ? const FlashDealShimmer()
-                          : megaDeal.flashDealList.isNotEmpty
+                          print('FlashDeal: ${megaDeal.flashDeal}');
+                          print(
+                              'FlashDealList length: ${megaDeal.flashDealList.length}');
+                          return megaDeal.flashDeal == null
+                              ? const FlashDealShimmer()
+                              : megaDeal.flashDealList.isNotEmpty
                               ? Column(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal:
-                                            Dimensions.paddingSizeDefault),
-                                    child: TitleRowWidget(
-                                      title:
-                                          getTranslated('flash_deal', context)
-                                              ?.toUpperCase(),
-                                      eventDuration: megaDeal.flashDeal != null
-                                          ? megaDeal.duration
-                                          : null,
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const FlashDealScreenView()));
-                                      },
-                                      isFlash: true,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                      height: Dimensions.paddingSizeSmall),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal:
-                                            Dimensions.paddingSizeDefault),
-                                    child: Text(
-                                      getTranslated(
-                                              'hurry_up_the_offer_is_limited_grab_while_it_lasts',
-                                              context) ??
-                                          '',
-                                      style: textRegular.copyWith(
-                                          color: Provider.of<ThemeController>(
-                                                      context,
-                                                      listen: false)
-                                                  .darkTheme
-                                              ? Theme.of(context).hintColor
-                                              : Theme.of(context).primaryColor,
-                                          fontSize: Dimensions.fontSizeDefault),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                      height: Dimensions.paddingSizeSmall),
-                                  const FlashDealsListWidget()
-                                ])
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal:
+                                  Dimensions.paddingSizeDefault),
+                              child: TitleRowWidget(
+                                title:
+                                getTranslated('flash_deal', context)
+                                    ?.toUpperCase(),
+                                eventDuration: megaDeal.flashDeal != null
+                                    ? megaDeal.duration
+                                    : null,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                          const FlashDealScreenView()));
+                                },
+                                isFlash: true,
+                              ),
+                            ),
+                            const SizedBox(
+                                height: Dimensions.paddingSizeSmall),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal:
+                                  Dimensions.paddingSizeDefault),
+                              child: Text(
+                                getTranslated(
+                                    'hurry_up_the_offer_is_limited_grab_while_it_lasts',
+                                    context) ??
+                                    '',
+                                style: textRegular.copyWith(
+                                    color: Provider.of<ThemeController>(
+                                        context,
+                                        listen: false)
+                                        .darkTheme
+                                        ? Theme.of(context).hintColor
+                                        : Theme.of(context).primaryColor,
+                                    fontSize: Dimensions.fontSizeDefault),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(
+                                height: Dimensions.paddingSizeSmall),
+                            const FlashDealsListWidget()
+                          ])
                               : const SizedBox.shrink();
-                    }),
+                        }),
                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),
                     Consumer<FeaturedDealController>(
                         builder: (context, featuredDealProvider, child) {
-                      return featuredDealProvider.featuredDealProductList !=
+                          return featuredDealProvider.featuredDealProductList !=
                               null
-                          ? featuredDealProvider
-                                  .featuredDealProductList!.isNotEmpty
+                              ? featuredDealProvider
+                              .featuredDealProductList!.isNotEmpty
                               ? Column(
-                                  children: [
-                                    Stack(children: [
-                                      Container(
-                                        width: 50,
-                                        height: 80,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onTertiary,
-                                      ),
-                                      Column(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: Dimensions
-                                                  .paddingSizeExtraSmall),
-                                          child: TitleRowWidget(
-                                            title:
-                                                '${getTranslated('featured_deals', context)}',
-                                            onTap: () => Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        const FeaturedDealScreenView())),
-                                          ),
-                                        ),
-                                        const FeaturedDealsListWidget(),
-                                      ]),
-                                    ]),
-                                    const SizedBox(
-                                        height: Dimensions.paddingSizeDefault),
-                                  ],
-                                )
+                            children: [
+                              Stack(children: [
+                                Container(
+                                  width: 50,
+                                  height: 80,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onTertiary,
+                                ),
+                                Column(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: Dimensions
+                                            .paddingSizeExtraSmall),
+                                    child: TitleRowWidget(
+                                      title:
+                                      '${getTranslated('featured_deals', context)}',
+                                      onTap: () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                              const FeaturedDealScreenView())),
+                                    ),
+                                  ),
+                                  const FeaturedDealsListWidget(),
+                                ]),
+                              ]),
+                              const SizedBox(
+                                  height: Dimensions.paddingSizeDefault),
+                            ],
+                          )
                               : const SizedBox.shrink()
-                          : const FindWhatYouNeedShimmer();
-                    }),
+                              : const FindWhatYouNeedShimmer();
+                        }),
                     const ClearanceListWidget(),
                     const SizedBox(height: Dimensions.paddingSizeDefault),
                     Consumer<BannerController>(
                         builder: (context, footerBannerProvider, child) {
-                      return footerBannerProvider.footerBannerList != null &&
+                          return footerBannerProvider.footerBannerList != null &&
                               footerBannerProvider.footerBannerList!.isNotEmpty
-                          ? Padding(
+                              ? Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: Dimensions.paddingSizeDefault),
                               child: SingleBannersWidget(
                                   bannerModel: footerBannerProvider
                                       .footerBannerList?[0]))
-                          : const SizedBox();
-                    }),
+                              : const SizedBox();
+                        }),
                     const SizedBox(height: Dimensions.paddingSizeDefault),
                     Consumer<ProductController>(
                         builder: (context, productController, _) {
-                      return productController.featuredProductList!=null? FeaturedProductWidget():SizedBox();
-                    }),
+                          return productController.featuredProductList!=null? FeaturedProductWidget():SizedBox();
+                        }),
                     const SizedBox(height: Dimensions.paddingSizeDefault),
                     singleVendor
                         ? const SizedBox()
                         : Consumer<ShopController>(
-                            builder: (context, topSellerProvider, child) {
-                            return (topSellerProvider.sellerModel != null &&
-                                    (topSellerProvider.sellerModel!.sellers !=
-                                            null &&
-                                        topSellerProvider
-                                            .sellerModel!.sellers!.isNotEmpty))
-                                ? TitleRowWidget(
-                                    title: getTranslated('top_seller', context),
-                                    onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                const AllTopSellerScreen(
-                                                  title: 'top_stores',
-                                                ))))
-                                : const SizedBox();
-                          }),
+                        builder: (context, topSellerProvider, child) {
+                          return (topSellerProvider.sellerModel != null &&
+                              (topSellerProvider.sellerModel!.sellers !=
+                                  null &&
+                                  topSellerProvider
+                                      .sellerModel!.sellers!.isNotEmpty))
+                              ? TitleRowWidget(
+                              title: getTranslated('top_seller', context),
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) =>
+                                      const AllTopSellerScreen(
+                                        title: 'top_stores',
+                                      ))))
+                              : const SizedBox();
+                        }),
                     singleVendor
                         ? const SizedBox(height: 0)
                         : const SizedBox(height: Dimensions.paddingSizeSmall),
                     singleVendor
                         ? const SizedBox()
                         : Consumer<ShopController>(
-                            builder: (context, topSellerProvider, child) {
-                            return (topSellerProvider.sellerModel != null &&
-                                    (topSellerProvider.sellerModel!.sellers !=
-                                            null &&
-                                        topSellerProvider
-                                            .sellerModel!.sellers!.isNotEmpty))
-                                ? Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: Dimensions.paddingSizeDefault),
-                                    child: SizedBox(
-                                        height: ResponsiveHelper.isTab(context)
-                                            ? 170
-                                            : 165,
-                                        child: TopSellerView(
-                                          isHomePage: true,
-                                          scrollController: _scrollController,
-                                        )))
-                                : const SizedBox();
-                          }),
+                        builder: (context, topSellerProvider, child) {
+                          return (topSellerProvider.sellerModel != null &&
+                              (topSellerProvider.sellerModel!.sellers !=
+                                  null &&
+                                  topSellerProvider
+                                      .sellerModel!.sellers!.isNotEmpty))
+                              ? Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: Dimensions.paddingSizeDefault),
+                              child: SizedBox(
+                                  height: ResponsiveHelper.isTab(context)
+                                      ? 170
+                                      : 165,
+                                  child: TopSellerView(
+                                    isHomePage: true,
+                                    scrollController: _scrollController,
+                                  )))
+                              : const SizedBox();
+                        }),
                     Padding(
                         padding: const EdgeInsets.only(
                             bottom: Dimensions.paddingSizeDefault),
@@ -740,7 +739,7 @@ class _HomePageState extends State<HomePage> {
                             return productController.recommendedProduct!=null?  RecommendedProductWidget():SizedBox();
                           },
                         ))
-                        ,
+                    ,
                     const Padding(
                         padding: EdgeInsets.only(
                             bottom: Dimensions.paddingSizeDefault),
@@ -767,197 +766,197 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: Dimensions.paddingSizeDefault),
                     Consumer<ProductController>(
                         builder: (ctx, prodProvider, child) {
-                      return Container(
-                          decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondaryContainer),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        Dimensions.paddingSizeDefault,
-                                        0,
-                                        Dimensions.paddingSizeSmall,
-                                        0),
-                                    child: Row(children: [
-                                      Expanded(
-                                          child: Text(
-                                              prodProvider.title == 'xyz'
-                                                  ? getTranslated(
+                          return Container(
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            Dimensions.paddingSizeDefault,
+                                            0,
+                                            Dimensions.paddingSizeSmall,
+                                            0),
+                                        child: Row(children: [
+                                          Expanded(
+                                              child: Text(
+                                                  prodProvider.title == 'xyz'
+                                                      ? getTranslated(
                                                       'new_arrival', context)!
-                                                  : prodProvider.title!,
-                                              style: titleHeader)),
-                                      prodProvider.latestProductList != null
-                                          ? PopupMenuButton(
-                                              padding: const EdgeInsets.all(0),
-                                              itemBuilder: (context) {
-                                                return [
-                                                  PopupMenuItem(
-                                                    value:
-                                                        ProductType.newArrival,
-                                                    child: Text(
-                                                        getTranslated(
-                                                                'new_arrival',
-                                                                context) ??
-                                                            '',
-                                                        style: textRegular
-                                                            .copyWith(
-                                                          color: prodProvider
-                                                                      .productType ==
-                                                                  ProductType
-                                                                      .newArrival
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .primaryColor
-                                                              : Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyLarge
-                                                                  ?.color,
-                                                        )),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    value:
-                                                        ProductType.topProduct,
-                                                    child: Text(
-                                                        getTranslated(
-                                                                'top_product',
-                                                                context) ??
-                                                            '',
-                                                        style: textRegular
-                                                            .copyWith(
-                                                          color: prodProvider
-                                                                      .productType ==
-                                                                  ProductType
-                                                                      .topProduct
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .primaryColor
-                                                              : Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyLarge
-                                                                  ?.color,
-                                                        )),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    value:
-                                                        ProductType.bestSelling,
-                                                    child: Text(
-                                                        getTranslated(
-                                                                'best_selling',
-                                                                context) ??
-                                                            '',
-                                                        style: textRegular
-                                                            .copyWith(
-                                                          color: prodProvider
-                                                                      .productType ==
-                                                                  ProductType
-                                                                      .bestSelling
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .primaryColor
-                                                              : Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyLarge
-                                                                  ?.color,
-                                                        )),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    value: ProductType
-                                                        .discountedProduct,
-                                                    child: Text(
-                                                        getTranslated(
-                                                                'discounted_product',
-                                                                context) ??
-                                                            '',
-                                                        style: textRegular
-                                                            .copyWith(
-                                                          color: prodProvider
-                                                                      .productType ==
-                                                                  ProductType
-                                                                      .discountedProduct
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .primaryColor
-                                                              : Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyLarge
-                                                                  ?.color,
-                                                        )),
-                                                  ),
-                                                ];
-                                              },
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius
-                                                      .circular(Dimensions
-                                                          .paddingSizeSmall)),
-                                              child: Padding(
-                                                  padding: const EdgeInsets
-                                                      .fromLTRB(
-                                                      Dimensions
-                                                          .paddingSizeExtraSmall,
-                                                      Dimensions
-                                                          .paddingSizeSmall,
-                                                      Dimensions
-                                                          .paddingSizeExtraSmall,
-                                                      Dimensions
-                                                          .paddingSizeSmall),
-                                                  child: Image.asset(
-                                                      Images.dropdown,
-                                                      scale: 3)),
-                                              onSelected: (ProductType value) {
-                                                if (value ==
-                                                    ProductType.newArrival) {
-                                                  Provider.of<ProductController>(
-                                                          context,
-                                                          listen: false)
-                                                      .changeTypeOfProduct(
-                                                          value, types[0]);
-                                                } else if (value ==
-                                                    ProductType.topProduct) {
-                                                  Provider.of<ProductController>(
-                                                          context,
-                                                          listen: false)
-                                                      .changeTypeOfProduct(
-                                                          value, types[1]);
-                                                } else if (value ==
-                                                    ProductType.bestSelling) {
-                                                  Provider.of<ProductController>(
-                                                          context,
-                                                          listen: false)
-                                                      .changeTypeOfProduct(
-                                                          value, types[2]);
-                                                } else if (value ==
-                                                    ProductType
-                                                        .discountedProduct) {
-                                                  Provider.of<ProductController>(
-                                                          context,
-                                                          listen: false)
-                                                      .changeTypeOfProduct(
-                                                          value, types[3]);
-                                                }
-                                                //  Provider.of<ProductController>(context, listen: false).getLatestProductList(1, reload: true);
-                                              },
-                                            )
-                                          : const SizedBox()
-                                    ])),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal:
+                                                      : prodProvider.title!,
+                                                  style: titleHeader)),
+                                          prodProvider.latestProductList != null
+                                              ? PopupMenuButton(
+                                            padding: const EdgeInsets.all(0),
+                                            itemBuilder: (context) {
+                                              return [
+                                                PopupMenuItem(
+                                                  value:
+                                                  ProductType.newArrival,
+                                                  child: Text(
+                                                      getTranslated(
+                                                          'new_arrival',
+                                                          context) ??
+                                                          '',
+                                                      style: textRegular
+                                                          .copyWith(
+                                                        color: prodProvider
+                                                            .productType ==
+                                                            ProductType
+                                                                .newArrival
+                                                            ? Theme.of(
+                                                            context)
+                                                            .primaryColor
+                                                            : Theme.of(
+                                                            context)
+                                                            .textTheme
+                                                            .bodyLarge
+                                                            ?.color,
+                                                      )),
+                                                ),
+                                                PopupMenuItem(
+                                                  value:
+                                                  ProductType.topProduct,
+                                                  child: Text(
+                                                      getTranslated(
+                                                          'top_product',
+                                                          context) ??
+                                                          '',
+                                                      style: textRegular
+                                                          .copyWith(
+                                                        color: prodProvider
+                                                            .productType ==
+                                                            ProductType
+                                                                .topProduct
+                                                            ? Theme.of(
+                                                            context)
+                                                            .primaryColor
+                                                            : Theme.of(
+                                                            context)
+                                                            .textTheme
+                                                            .bodyLarge
+                                                            ?.color,
+                                                      )),
+                                                ),
+                                                PopupMenuItem(
+                                                  value:
+                                                  ProductType.bestSelling,
+                                                  child: Text(
+                                                      getTranslated(
+                                                          'best_selling',
+                                                          context) ??
+                                                          '',
+                                                      style: textRegular
+                                                          .copyWith(
+                                                        color: prodProvider
+                                                            .productType ==
+                                                            ProductType
+                                                                .bestSelling
+                                                            ? Theme.of(
+                                                            context)
+                                                            .primaryColor
+                                                            : Theme.of(
+                                                            context)
+                                                            .textTheme
+                                                            .bodyLarge
+                                                            ?.color,
+                                                      )),
+                                                ),
+                                                PopupMenuItem(
+                                                  value: ProductType
+                                                      .discountedProduct,
+                                                  child: Text(
+                                                      getTranslated(
+                                                          'discounted_product',
+                                                          context) ??
+                                                          '',
+                                                      style: textRegular
+                                                          .copyWith(
+                                                        color: prodProvider
+                                                            .productType ==
+                                                            ProductType
+                                                                .discountedProduct
+                                                            ? Theme.of(
+                                                            context)
+                                                            .primaryColor
+                                                            : Theme.of(
+                                                            context)
+                                                            .textTheme
+                                                            .bodyLarge
+                                                            ?.color,
+                                                      )),
+                                                ),
+                                              ];
+                                            },
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius
+                                                    .circular(Dimensions
+                                                    .paddingSizeSmall)),
+                                            child: Padding(
+                                                padding: const EdgeInsets
+                                                    .fromLTRB(
+                                                    Dimensions
+                                                        .paddingSizeExtraSmall,
+                                                    Dimensions
+                                                        .paddingSizeSmall,
+                                                    Dimensions
+                                                        .paddingSizeExtraSmall,
+                                                    Dimensions
+                                                        .paddingSizeSmall),
+                                                child: Image.asset(
+                                                    Images.dropdown,
+                                                    scale: 3)),
+                                            onSelected: (ProductType value) {
+                                              if (value ==
+                                                  ProductType.newArrival) {
+                                                Provider.of<ProductController>(
+                                                    context,
+                                                    listen: false)
+                                                    .changeTypeOfProduct(
+                                                    value, types[0]);
+                                              } else if (value ==
+                                                  ProductType.topProduct) {
+                                                Provider.of<ProductController>(
+                                                    context,
+                                                    listen: false)
+                                                    .changeTypeOfProduct(
+                                                    value, types[1]);
+                                              } else if (value ==
+                                                  ProductType.bestSelling) {
+                                                Provider.of<ProductController>(
+                                                    context,
+                                                    listen: false)
+                                                    .changeTypeOfProduct(
+                                                    value, types[2]);
+                                              } else if (value ==
+                                                  ProductType
+                                                      .discountedProduct) {
+                                                Provider.of<ProductController>(
+                                                    context,
+                                                    listen: false)
+                                                    .changeTypeOfProduct(
+                                                    value, types[3]);
+                                              }
+                                              //  Provider.of<ProductController>(context, listen: false).getLatestProductList(1, reload: true);
+                                            },
+                                          )
+                                              : const SizedBox()
+                                        ])),
+                                    Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal:
                                             Dimensions.paddingSizeSmall),
-                                    child: ProductListWidget(
-                                        isHomePage: false,
-                                        productType: ProductType.newArrival,
-                                        scrollController: _scrollController)),
-                                const SizedBox(
-                                    height: Dimensions.homePagePadding)
-                              ]));
-                    }),
+                                        child: ProductListWidget(
+                                            isHomePage: false,
+                                            productType: ProductType.newArrival,
+                                            scrollController: _scrollController)),
+                                    const SizedBox(
+                                        height: Dimensions.homePagePadding)
+                                  ]));
+                        }),
                     //                 InkWell(
                     //          onTap: (){
                     // Navigator.push(

@@ -26,8 +26,8 @@ class ProductController extends ChangeNotifier {
 
   ProductType _productType = ProductType.newArrival;
   String? _title = '${getTranslated('best_selling', Get.context!)}';
-  
-  // Shipping method: 1 for express, 2 for pre-order  
+
+  // Shipping method: 1 for express, 2 for pre-order
   int _shippingMethod = 1; // Default to express
   int get shippingMethod => _shippingMethod;
 
@@ -93,7 +93,7 @@ class ProductController extends ChangeNotifier {
     getHomeCategoryProductList(true);
     getRecommendedProduct();
     getMostDemandedProduct();
-    findWhatYouNeed();
+    // findWhatYouNeed();
     getJustForYouProduct();
     notifyListeners();
   }
@@ -814,7 +814,12 @@ class ProductController extends ChangeNotifier {
       _discountedProductModel = null;
 
       if (isUpdate) {
-        notifyListeners();
+        WidgetsBinding.instance.addPostFrameCallback((_){
+
+          notifyListeners();
+
+        });
+
       }
     }
 

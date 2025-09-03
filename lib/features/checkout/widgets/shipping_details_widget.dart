@@ -136,14 +136,17 @@ class _ShippingDetailsWidgetState extends State<ShippingDetailsWidget> {
                                                                 .addressIndex!]
                                                         .contactPersonName ??
                                                     ''),
-                                            AddressInfoItem(
-                                                icon: Images.callIcon,
-                                                title: locationProvider
-                                                        .addressList![
-                                                            shippingProvider
-                                                                .addressIndex!]
-                                                        .phone ??
-                                                    ''),
+                                            Directionality(
+                                              textDirection: TextDirection.ltr,
+                                              child: AddressInfoItem(
+                                                  icon: Images.callIcon,
+                                                  title: locationProvider
+                                                          .addressList![
+                                                              shippingProvider
+                                                                  .addressIndex!]
+                                                          .phone ??
+                                                      ''),
+                                            ),
                                             AddressInfoItem(
                                                 icon: Images.address,
                                                 title: locationProvider

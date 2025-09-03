@@ -6,6 +6,7 @@ import 'package:gharsat_ward/features/landing/controller/your_tap_controller.dar
 import 'package:gharsat_ward/localization/controllers/localization_controller.dart';
 import 'package:gharsat_ward/localization/language_constrants.dart';
 import 'package:gharsat_ward/utill/app_constants.dart';
+import 'package:gharsat_ward/utill/custom_themes.dart';
 import 'package:provider/provider.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _LandingScreenState extends State<LandingScreen> {
           children: [
             const SizedBox(height: 40),
             Center(child: Image.asset("assets/images/logo.png", width: 200)),
-            
+
             // Gradient Overlay
             Container(
               decoration: BoxDecoration(
@@ -45,16 +46,16 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 50),
-            
+
             // Language Selector
              Consumer<LocalizationController>(
               builder: (context, localizationProvider, _) {return
                Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Container(
-                 
+
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(221, 170, 115, 1),
                     borderRadius: BorderRadius.circular(20),
@@ -68,7 +69,7 @@ class _LandingScreenState extends State<LandingScreen> {
                             child: GestureDetector(
                                onTap: () {
                                 tabController.changeTab(0);
-                                setState(() {}); 
+                                setState(() {});
                                 setState(() {
                           selectedIndex = 0;
                         });
@@ -102,7 +103,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                 child: Text(
                                   'English',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: textMedium.copyWith(
                                     color: tabController.currentTab == 0
                                         ? const Color.fromRGBO(221, 170, 115, 1)
                                         : Colors.white,
@@ -112,13 +113,13 @@ class _LandingScreenState extends State<LandingScreen> {
                               ),
                             ),
                           ),
-                          
+
                           // Arabic Button
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
                                 tabController.changeTab(1);
-                                setState(() {}); 
+                                setState(() {});
                                 setState(() {
                           selectedIndex = 1;
                         });
@@ -152,7 +153,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                 child: Text(
                                   'Arabic',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: textMedium.copyWith(
                                     color: tabController.currentTab == 1
                                         ? const Color.fromRGBO(221, 170, 115, 1)
                                         : Colors.white,
@@ -169,7 +170,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
               );},
             ),
-            
+
             SizedBox(height: 50),
                 SizedBox(
                  width: 320,
@@ -191,7 +192,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                     child:  Text(
           getTranslated('sign_in', context)!,
-                      style: TextStyle(
+                      style: textMedium.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
@@ -222,7 +223,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                     child:  Text(
                       getTranslated('continue_as_guest', context)!,
-                      style: TextStyle(
+                      style: textMedium.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1,
@@ -231,7 +232,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                   ),
                 ),
-                
+
                 SizedBox(height: 30),
           ],
         ),

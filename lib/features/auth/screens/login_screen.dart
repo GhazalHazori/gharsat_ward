@@ -214,8 +214,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       TextDirection.ltr,
                                                   child: Image.asset(
                                                       Images.logoWithNameImage,
-                                                      width: 140,
-                                                      height: 50)),
+                                                      width: 200,
+                                                      height: 80)),
                                             ),
                                           ),
 
@@ -336,12 +336,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     Text(
                                                       getTranslated(
                                                           'remember', context)!,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .displayMedium!
+                                                      style: textMedium
                                                           .copyWith(
                                                             fontSize: Dimensions
-                                                                .fontSizeSmall,
+                                                                .fontSizeDefault,
                                                             color: Theme.of(
                                                                     context)
                                                                 .primaryColor,
@@ -365,10 +363,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       localizationProvider.isLtr
                                                           ? "${getTranslated('forget_password', context)!}?"
                                                           : "${getTranslated('forget_password', context)!}؟",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .displayMedium!
-                                                          .copyWith(
+                                                      style: textMedium.copyWith(
                                                             fontSize: Dimensions
                                                                 .fontSizeSmall,
                                                             color: Theme.of(
@@ -622,48 +617,48 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     .paddingSizeLarge),
                                           ],
 
-                                          if ((configModel
-                                                      .customerLogin
-                                                      ?.loginOption
-                                                      ?.socialMediaLogin ==
-                                                  1) &&
-                                              configModel.customerLogin
-                                                      ?.loginOption?.otpLogin !=
-                                                  1)
-                                            Row(
-                                              children: [
-                                                Expanded(
-                                                    child: Divider(
-                                                        color: Theme.of(context)
-                                                            .hintColor)),
-                                                const SizedBox(
-                                                    width: Dimensions
-                                                        .paddingSizeSmall),
-                                                Text(
-                                                  getTranslated(
-                                                      'or_sign_in_with',
-                                                      context)!,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .displayMedium!
-                                                      .copyWith(
-                                                          fontSize: Dimensions
-                                                              .fontSizeDefault,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .hintColor,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                ),
-                                                const SizedBox(
-                                                    width: Dimensions
-                                                        .paddingSizeSmall),
-                                                Expanded(
-                                                    child: Divider(
-                                                        color: Theme.of(context)
-                                                            .hintColor)),
-                                              ],
-                                            ),
+                                          // if ((configModel
+                                          //             .customerLogin
+                                          //             ?.loginOption
+                                          //             ?.socialMediaLogin ==
+                                          //         1) &&
+                                          //     configModel.customerLogin
+                                          //             ?.loginOption?.otpLogin !=
+                                          //         1)
+                                          //   Row(
+                                          //     children: [
+                                          //       Expanded(
+                                          //           child: Divider(
+                                          //               color: Theme.of(context)
+                                          //                   .hintColor)),
+                                          //       const SizedBox(
+                                          //           width: Dimensions
+                                          //               .paddingSizeSmall),
+                                          //       Text(
+                                          //         getTranslated(
+                                          //             'or_sign_in_with',
+                                          //             context)!,
+                                          //         style: Theme.of(context)
+                                          //             .textTheme
+                                          //             .displayMedium!
+                                          //             .copyWith(
+                                          //                 fontSize: Dimensions
+                                          //                     .fontSizeDefault,
+                                          //                 color:
+                                          //                     Theme.of(context)
+                                          //                         .hintColor,
+                                          //                 fontWeight:
+                                          //                     FontWeight.w400),
+                                          //       ),
+                                          //       const SizedBox(
+                                          //           width: Dimensions
+                                          //               .paddingSizeSmall),
+                                          //       Expanded(
+                                          //           child: Divider(
+                                          //               color: Theme.of(context)
+                                          //                   .hintColor)),
+                                          //     ],
+                                          //   ),
 
                                           if (configModel
                                                   .customerLogin
@@ -674,13 +669,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 height: Dimensions
                                                     .paddingSizeSmall),
 
-                                          if (configModel
-                                                  .customerLogin
-                                                  ?.loginOption
-                                                  ?.socialMediaLogin ==
-                                              1)
-                                            const Center(
-                                                child: SocialLoginWidget()),
+                                          // if (configModel
+                                          //         .customerLogin
+                                          //         ?.loginOption
+                                          //         ?.socialMediaLogin ==
+                                          //     1)
+                                          //   const Center(
+                                          //       child: SocialLoginWidget()),
                                           const SizedBox(
                                               height:
                                                   Dimensions.paddingSizeLarge),
@@ -693,10 +688,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   getTranslated(
                                                       'create_an_account',
                                                       context)!,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .displayMedium!
-                                                      .copyWith(
+                                                  style: textMedium.copyWith(
                                                         fontSize: Dimensions
                                                             .fontSizeDefault,
                                                         color: Theme.of(context)

@@ -5,7 +5,7 @@ ThemeData light({Color? primaryColor, Color? secondaryColor}) => ThemeData(
       primaryColor: primaryColor ?? const Color(0xFFD99F5F), // base
       brightness: Brightness.light,
       highlightColor: Colors.white,
-      hintColor: const Color(0xFF9E9E9E),
+      hintColor: const Color(0xFF5E5E5E),
       splashColor: Colors.transparent,
       colorScheme: ColorScheme.light(
         primary: const Color(0xFFD99F5F), // base
