@@ -82,7 +82,7 @@ class SquareButtonWidget extends StatelessWidget {
                           children: [
                             Text(
                               getTranslated(subTitle, context) ?? '',
-                              style: textRegular.copyWith(color: Colors.white),
+                              style: textBold.copyWith(color: Colors.white),
                             ),
                             isLoyalty
                                 ? Text(

@@ -38,6 +38,7 @@ class ProductSpecificationWidget extends StatelessWidget {
                   child: SingleChildScrollView(
                     physics: const NeverScrollableScrollPhysics(),
                     child: HtmlWidget(productSpecification,
+                        textStyle: textMedium.copyWith(),
                         onTapUrl: (String url) {
                       return launchUrl(Uri.parse(url),
                           mode: LaunchMode.externalApplication);

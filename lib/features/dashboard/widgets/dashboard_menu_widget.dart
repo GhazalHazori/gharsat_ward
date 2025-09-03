@@ -85,11 +85,11 @@ class CustomMenuWidget extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: isSelected
-                    ? textMedium.copyWith(
+                    ? textBold.copyWith(
                         color: Theme.of(context).primaryColor,
                         fontSize: 12,
                       )
-                    : textRegular.copyWith(
+                    : textMedium.copyWith(
                         color: Theme.of(context).hintColor,
                         fontSize: 11,
                       ),

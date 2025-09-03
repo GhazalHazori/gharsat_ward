@@ -172,9 +172,9 @@ class PaymentMethodBottomSheetWidgetState
                               ]),
 
                               ///change amount
-                              ChangeAmountWidget(
-                                  changeAmountTextController:
-                                      changeAmountTextController),
+                              // ChangeAmountWidget(
+                              //     changeAmountTextController:
+                              //         changeAmountTextController),
 
                               if ((configModel?.digitalPayment ?? false) &&
                                   (configModel?.paymentMethods?.isNotEmpty ??

@@ -41,16 +41,16 @@ class SettingsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                   horizontal: Dimensions.paddingSizeExtraSmall),
               children: [
-                SwitchListTile(
-                  value: Provider.of<ThemeController>(context).darkTheme,
-                  onChanged: (bool isActive) =>
-                      Provider.of<ThemeController>(context, listen: false)
-                          .toggleTheme(),
-                  title: Text(getTranslated('dark_theme', context)!,
-                      style: titilliumRegular.copyWith(
-                        fontSize: Dimensions.fontSizeLarge,
-                      )),
-                ),
+                // SwitchListTile(
+                //   value: Provider.of<ThemeController>(context).darkTheme,
+                //   onChanged: (bool isActive) =>
+                //       Provider.of<ThemeController>(context, listen: false)
+                //           .toggleTheme(),
+                //   title: Text(getTranslated('dark_theme', context)!,
+                //       style: titilliumRegular.copyWith(
+                //         fontSize: Dimensions.fontSizeLarge,
+                //       )),
+                // ),
                 TitleButton(
                   image: Images.language,
                   title: getTranslated('choose_language', context),
@@ -61,16 +61,16 @@ class SettingsScreen extends StatelessWidget {
                     builder: (_) => const SelectLanguageBottomSheetWidget(),
                   ),
                 ),
-                TitleButton(
-                    image: Images.currency,
-                    title:
-                        '${getTranslated('currency', context)} (${Provider.of<SplashController>(context).myCurrency!.name})',
-                    onTap: () => showModalBottomSheet(
-                        backgroundColor: Colors.transparent,
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (_) =>
-                            const SelectCurrencyBottomSheetWidget())),
+                // TitleButton(
+                //     image: Images.currency,
+                //     title:
+                //         '${getTranslated('currency', context)} (${Provider.of<SplashController>(context).myCurrency!.name})',
+                //     onTap: () => showModalBottomSheet(
+                //         backgroundColor: Colors.transparent,
+                //         isScrollControlled: true,
+                //         context: context,
+                //         builder: (_) =>
+                //             const SelectCurrencyBottomSheetWidget())),
               ],
             )),
           ])),

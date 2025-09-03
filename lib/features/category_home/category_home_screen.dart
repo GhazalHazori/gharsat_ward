@@ -20,7 +20,7 @@ class CategoryScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
+
       body: Consumer<CategoryController>(
         builder: (context, categoryProvider, child) {
           return categoryProvider.categoryList.isNotEmpty
@@ -126,7 +126,7 @@ class CategoryItem extends StatelessWidget {
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: textRegular.copyWith(fontSize: 12),
+          style: textMedium.copyWith(fontSize: 14),
         ),
       ],
     );

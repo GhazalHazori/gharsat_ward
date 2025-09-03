@@ -66,7 +66,7 @@ class MenuButtonWidget extends StatelessWidget {
           ),
           title: Text(title!,
               style:
-                  titilliumRegular.copyWith(fontSize: Dimensions.fontSizeDefault)),
+                  titilliumRegular.copyWith(fontSize: Dimensions.fontSizeDefault+2)),
           onTap: () => Navigator.push(
               context, MaterialPageRoute(builder: (_) => navigateTo))),
     );

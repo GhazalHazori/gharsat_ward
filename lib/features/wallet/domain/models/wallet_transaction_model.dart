@@ -10,7 +10,7 @@ class WalletTransactionModel {
   DateTime? startDate;
   DateTime? endDate;
   List<String>? transactionTypes;
-  List<WalletTransactionList>? walletTransactionList;
+  List<WalletTransactionList>? walletTransactionList =[];
 
   WalletTransactionModel.fromJson(Map<String, dynamic> json) {
     limit = int.tryParse('${json['limit']}');
