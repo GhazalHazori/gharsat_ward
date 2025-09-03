@@ -957,7 +957,7 @@ class CartScreenState extends State<CartScreen> {
                                   ),
                                 ),
                               ),
-                              
+
                               // (!onlyDigital &&
                               //         configProvider
                               //                 .configModel!.shippingMethod !=

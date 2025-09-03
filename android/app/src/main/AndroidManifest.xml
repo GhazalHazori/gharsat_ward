@@ -43,7 +43,7 @@
         android:icon="@mipmap/ic_launcher"
         android:enableOnBackInvokedCallback="true">
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_MAP_KEY_HERE" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAjgKd13infeu-cbs3GPxThb02uX-caGaQ" />
 
         <activity
             android:name=".MainActivity"

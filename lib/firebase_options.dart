@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '984123815169',
     projectId: 'gharsat-ward',
     storageBucket: 'gharsat-ward.firebasestorage.app',
-    iosBundleId: 'com.mr.gharsatWard',
+    iosBundleId: 'ca.dinspire.gharsat',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '984123815169',
     projectId: 'gharsat-ward',
     storageBucket: 'gharsat-ward.firebasestorage.app',
-    iosBundleId: 'com.mr.gharsatWard',
+    iosBundleId: 'ca.dinspire.gharsat',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

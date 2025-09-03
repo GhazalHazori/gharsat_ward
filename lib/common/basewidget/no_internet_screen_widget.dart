@@ -1,9 +1,6 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:gharsat_ward/common/basewidget/custom_asset_image_widget.dart';
 import 'package:gharsat_ward/localization/language_constrants.dart';
-import 'package:gharsat_ward/main.dart';
-import 'package:gharsat_ward/utill/color_resources.dart';
 import 'package:gharsat_ward/utill/custom_themes.dart';
 import 'package:gharsat_ward/utill/dimensions.dart';
 import 'package:gharsat_ward/utill/images.dart';
