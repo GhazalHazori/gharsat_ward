@@ -330,7 +330,7 @@ class _HomePageState extends State<HomePage> {
                                   Text('${getTranslated('order_total', context)!}',
                                       style: textBold.copyWith(
                                         color: ColorResources.black,
-                                        fontSize: 12,
+                                        fontSize: 10,
                                       )),
                                   SizedBox(
                                     width: 20,
@@ -341,84 +341,10 @@ class _HomePageState extends State<HomePage> {
                                             cart.cartList.length.toString(),
                                             style: textBold.copyWith(
                                               color: ColorResources.black,
-                                              fontSize: 12,
-<<<<<<< HEAD
-                                            )),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Consumer<CartController>(
-                                            builder: (context, cart, child) {
-                                          return Text(
-                                              cart.cartList.length.toString(),
-                                              style: textBold.copyWith(
-                                                color: ColorResources.black,
-                                                fontSize: 12,
-                                              ));
-                                        }),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '${getTranslated('credit_limit', context)!}',
-                                          style: textBold.copyWith(
-                                            color: ColorResources.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Consumer<WalletController>(
-                                            builder: (context, cart, child) {
-                                         
-                 String datedue = cart.walletTransactionModel?.walletTransactionList == null 
-    ? "..."
-    : (() {
-      
-        DateTime createdAt = DateTime.parse(
-            cart.walletTransactionModel!.walletTransactionList!.last.createdAt!);
-       
-        DateTime dueDate = createdAt.add(Duration(days: 15));
-      
-      return DateFormat('yyyy-MM-dd').format(dueDate); 
-      })();
-
-                                          return Row(
-                                            children: [
-                                              Text(
-                                                  datedue,
-                                                  style: textBold.copyWith(
-                                                    color: ColorResources.black,
-                                                    fontSize: 12,
-                                                  )),
-                                                  //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
-                          
-                                            ],
-                                          );
-                                        }),
-                                      ],
-                                    ),
-
-                                    //  Text( ' المتبقي: '),
-                                    // Text(
-                                    // '46,797.52',
-                                    //   style: TextStyle(
-                                    //     fontWeight: FontWeight.bold,
-                                    //     color: Colors.blue.shade600,
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-=======
+                                              fontSize: 10,
                                             ));
                                       }),
                                 ],
->>>>>>> 335cb344cd112ca4b73e82f996faf6f8247a4ed4
                               ),
                               SizedBox(
                                 height: 5,
@@ -429,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                                     '${getTranslated('credit_limit', context)!}',
                                     style: textBold.copyWith(
                                       color: ColorResources.black,
-                                      fontSize: 12,
+                                      fontSize: 10,
                                     ),
                                   ),
                                   SizedBox(
@@ -439,7 +365,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context, cart, child) {
 
                                         String datedue = cart.walletTransactionModel?.walletTransactionList == null || cart.walletTransactionModel!.walletTransactionList!.isEmpty
-                                            ? "..."
+                                            ? getTranslated('date_due', context)!
                                             : (() {
 
                                           DateTime createdAt = DateTime.parse(
@@ -456,7 +382,7 @@ class _HomePageState extends State<HomePage> {
                                                 datedue,
                                                 style: textBold.copyWith(
                                                   color: ColorResources.black,
-                                                  fontSize: 12,
+                                                  fontSize: 10,
                                                 )),
                                             //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
 
@@ -564,7 +490,7 @@ class _HomePageState extends State<HomePage> {
                                             child: Center(
                                               child: Text(
                                                 getTranslated(
-                                                    'Express', context) ??
+                                                    'express', context) ??
                                                     '',
                                                 style: textMedium.copyWith(
                                                   color: selectedTab == 0
@@ -609,7 +535,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Center(
                                                 child: Text(
                                                   getTranslated(
-                                                      'pre Order', context) ??
+                                                      'pre_order', context) ??
                                                       '',
                                                   style: textMedium.copyWith(
                                                     color: selectedTab == 1
@@ -732,14 +658,14 @@ class _HomePageState extends State<HomePage> {
                                 ]),
                               ]),
                               const SizedBox(
-                                  height: Dimensions.paddingSizeDefault),
+                                  height: Dimensions.paddingSizeExtraExtraSmall),
                             ],
                           )
                               : const SizedBox.shrink()
                               : const FindWhatYouNeedShimmer();
                         }),
                     const ClearanceListWidget(),
-                    const SizedBox(height: Dimensions.paddingSizeDefault),
+                    const SizedBox(height: Dimensions.paddingSizeExtraExtraSmall),
                     Consumer<BannerController>(
                         builder: (context, footerBannerProvider, child) {
                           return footerBannerProvider.footerBannerList != null &&
@@ -752,7 +678,7 @@ class _HomePageState extends State<HomePage> {
                                       .footerBannerList?[0]))
                               : const SizedBox();
                         }),
-                    const SizedBox(height: Dimensions.paddingSizeDefault),
+                    // const SizedBox(height: Dimensions.paddingSizeExtraExtraSmall),
                     Consumer<ProductController>(
                         builder: (context, productController, _) {
                           return productController.featuredProductList!=null? FeaturedProductWidget():SizedBox();

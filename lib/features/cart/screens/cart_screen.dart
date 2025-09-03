@@ -286,12 +286,12 @@ class CartScreenState extends State<CartScreen> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text(   getTranslated('login_required', context)!,style: TextStyle(fontSize: 20),),
-          content: Text(   getTranslated('need_procced', context)!,style: TextStyle(fontSize: 12),),
+          title: Text(   getTranslated('login_required', context)!,style: textBold.copyWith(fontSize: 20)),
+          content: Text(   getTranslated('need_procced', context)!,style: textMedium.copyWith(fontSize: 12),),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx), // إغلاق
-              child: Text(   getTranslated('CANCEL', context)!),
+              child: Text(   getTranslated('CANCEL', context)!,style: textMedium,)
             ),
             TextButton(
               onPressed: () {
@@ -302,7 +302,7 @@ class CartScreenState extends State<CartScreen> {
                           MaterialPageRoute(
                               builder: (context) => const LoginScreen()));
               },
-              child: Text(   getTranslated('sign_in', context)!),
+              child: Text(   getTranslated('sign_in', context)!,style: textMedium,),
             ),
           ],
         ),

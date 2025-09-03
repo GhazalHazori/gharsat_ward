@@ -139,7 +139,7 @@ class _MoreScreenState extends State<MoreScreen> {
                               Text('${getTranslated('order_total', context)!}',
                                   style: textBold.copyWith(
                                     color: ColorResources.black,
-                                    fontSize: 12,
+                                    fontSize: 10,
                                   )),
                               const SizedBox(
                                 width: 20,
@@ -150,7 +150,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                         cart.cartList.length.toString(),
                                         style: textBold.copyWith(
                                           color: ColorResources.black,
-                                          fontSize: 12,
+                                          fontSize: 10,
                                         ));
                                   }),
                             ],
@@ -164,7 +164,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                 '${getTranslated('credit_limit', context)!}',
                                 style: textBold.copyWith(
                                   color: ColorResources.black,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                 ),
                               ),
                               const SizedBox(
@@ -174,7 +174,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                   builder: (context, cart, child) {
 
                                     String datedue = cart.walletTransactionModel?.walletTransactionList == null ||  cart.walletTransactionModel!.walletTransactionList!.isEmpty
-                                        ? "..."
+                                        ? getTranslated('date_due', context)!
                                         : (() {
 
                                       DateTime createdAt = DateTime.parse(
@@ -191,7 +191,7 @@ class _MoreScreenState extends State<MoreScreen> {
                                             datedue,
                                             style: textBold.copyWith(
                                               color: ColorResources.black,
-                                              fontSize: 12,
+                                              fontSize: 10,
                                             )),
                                         //  cart.walletTransactionModel!= null ?             Image.asset(Images.saudiImage,color: Colors.black,width: 15,):SizedBox()
 

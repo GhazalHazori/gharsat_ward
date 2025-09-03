@@ -315,7 +315,8 @@ final headerImage = await _loadImage();
                         // _buildBilingualTableCell('Invoice Number', 'رقم الفاتورة'),
                         // Center(child: Text(invoiceNumber, style: titilliumRegular)),
                         _buildBilingualTableCell('Date Of Supply', 'تاريخ التوريد'),
-                        Center(child: Text('${cartCtrl.cartList.last.productInfo?.shippingMethod?.deliveryDate}', style: titilliumRegular)),
+                        Center(child: Text('${  cartCtrl.cartList.last.productInfo?.shippingMethod?.id==1?getOrderDate():
+            cartCtrl.cartList.last.productInfo?.shippingMethod?.deliveryDate}', style: titilliumRegular)),
                         // _buildBilingualTableCell('Date', 'التاريخ'),
                       ],
                     ),

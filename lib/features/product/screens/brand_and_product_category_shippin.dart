@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gharsat_ward/common/basewidget/paginated_list_view_widget.dart';
+import 'package:gharsat_ward/common/basewidget/product_user_widget.dart';
+import 'package:gharsat_ward/features/auth/controllers/auth_controller.dart';
 import 'package:gharsat_ward/features/deal/controllers/featured_deal_controller.dart';
 import 'package:gharsat_ward/features/deal/controllers/flash_deal_controller.dart';
 import 'package:gharsat_ward/features/product/controllers/product_controller.dart';
 import 'package:gharsat_ward/features/profile/controllers/profile_contrroller.dart';
 import 'package:gharsat_ward/helper/responsive_helper.dart';
+import 'package:gharsat_ward/main.dart';
 import 'package:gharsat_ward/utill/custom_themes.dart';
 import 'package:gharsat_ward/utill/dimensions.dart';
 import 'package:gharsat_ward/utill/images.dart';
@@ -178,18 +181,23 @@ class _BrandAndCategoryProductShippinState
                               horizontal: Dimensions.paddingSizeSmall)
                           .copyWith(top: Dimensions.paddingSizeExtraSmall),
                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: ResponsiveHelper.isTab(context) ? 3 : 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: (1 / 1.7),
+        crossAxisCount: ResponsiveHelper.isTab(context) ? 3 : 2,
+                      childAspectRatio:Provider.of<AuthController>(Get.context!, listen: false).getUserToken()==""?0.62: 0.5, // نسبة الطول إلى العرض
+                      mainAxisSpacing: 10, // تباعد عمودي
+                      crossAxisSpacing: 10, // تباعد أفقي
         ),
                       itemCount: productController
                               .brandOrCategoryProductList?.products?.length ??
                           0,
                       itemBuilder: (BuildContext context, int index) {
-                        return ProductWidget(
-                            productModel: productController
-                                .brandOrCategoryProductList!.products![index]);
+                        return Provider.of<AuthController>(Get.context!, listen: false).getUserToken()==""?
+                      ProductWidget(
+                    productModel: productController
+                                .brandOrCategoryProductList!.products![index],
+                        productNameLine: 1,
+                      ):ProductUserWidget(  productModel: productController
+                                .brandOrCategoryProductList!.products![index] ,productNameLine: 1,)
+                      ;
                       },
                     ),
                   ),

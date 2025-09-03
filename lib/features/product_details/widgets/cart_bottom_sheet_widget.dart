@@ -895,136 +895,139 @@ void initState() {
                         : Provider.of<CartController>(context).addToCartLoading
                             ? const Center(
                                 child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.symmetric(horizontal:  8.0,vertical: 30),
                                     child: CircularProgressIndicator()))
-                            : Container(
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: Dimensions.homePagePadding,
-                                      vertical: Dimensions.paddingSizeSmall),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(child:
-                                          Consumer<SplashController>(builder:
-                                              (context, configProvider, _) {
-                                        return CustomButton(
-                                            isBuy: true,
-                                            radius: 6,
-                                            buttonText: getTranslated(
-                                                stock == 0 &&
+                            : Padding(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                              child: Container(
+                                  color: Theme.of(context).colorScheme.onTertiary,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: Dimensions.homePagePadding,
+                                        vertical: Dimensions.paddingSizeSmall),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(child:
+                                            Consumer<SplashController>(builder:
+                                                (context, configProvider, _) {
+                                          return CustomButton(
+                                              isBuy: true,
+                                              radius: 6,
+                                              buttonText: getTranslated(
+                                                  stock == 0 &&
+                                                          widget.product!
+                                                                  .productType ==
+                                                              "physical"
+                                                      ? 'out_of_stock'
+                                                      : 'buy_now',
+                                                  context),
+                                              onTap: () {
+                                                if (configProvider.configModel
+                                                            ?.guestCheckOut ==
+                                                        0 &&
+                                                    !Provider.of<AuthController>(
+                                                            context,
+                                                            listen: false)
+                                                        .isLoggedIn()) {
+                                                  showModalBottomSheet(
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      context: context,
+                                                      builder: (_) =>
+                                                          const NotLoggedInBottomSheetWidget());
+                                                } else if (stock! <
                                                         widget.product!
-                                                                .productType ==
-                                                            "physical"
-                                                    ? 'out_of_stock'
-                                                    : 'buy_now',
-                                                context),
-                                            onTap: () {
-                                              if (configProvider.configModel
-                                                          ?.guestCheckOut ==
-                                                      0 &&
-                                                  !Provider.of<AuthController>(
+                                                            .minimumOrderQty! &&
+                                                    widget.product!.productType ==
+                                                        "physical") {
+                                                  showCustomSnackBar(
+                                                      getTranslated(
+                                                          'out_of_stock',
+                                                          context),
+                                                      context);
+                                                } 
+                                                else if (stock >=
+                                                        widget.product!
+                                                            .minimumOrderQty! ||
+                                                    widget.product!.productType ==
+                                                        "digital") {
+                                                  Provider.of<CartController>(
                                                           context,
                                                           listen: false)
-                                                      .isLoggedIn()) {
-                                                showModalBottomSheet(
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    context: context,
-                                                    builder: (_) =>
-                                                        const NotLoggedInBottomSheetWidget());
-                                              } else if (stock! <
-                                                      widget.product!
-                                                          .minimumOrderQty! &&
-                                                  widget.product!.productType ==
-                                                      "physical") {
-                                                showCustomSnackBar(
-                                                    getTranslated(
-                                                        'out_of_stock',
-                                                        context),
-                                                    context);
-                                              } 
-                                              else if (stock >=
-                                                      widget.product!
-                                                          .minimumOrderQty! ||
-                                                  widget.product!.productType ==
-                                                      "digital") {
-                                                Provider.of<CartController>(
-                                                        context,
-                                                        listen: false)
-                                                    .addToCartAPI(
-                                                        cart,
-                                                        context,
-                                                        widget.product!
-                                                            .choiceOptions!,
-                                                        details.variationIndex,
-                                                        buyNow: 1,shippingMethodId: widget.product!.shippingMethod!.id,shippingMethodExist: widget.product!.shippingMethod!.id)
-                                                    .then((value) {
-                                                  if (value.response!
-                                                          .statusCode ==
-                                                      200) {
-                                                    _buyNow(
-                                                        cart,
-                                                        Get.context!,
-                                                        widget.product!
-                                                            .choiceOptions!,
-                                                        details.variationIndex,
-                                                        value.response);
-                                                  }
-                                                });
+                                                      .addToCartAPI(
+                                                          cart,
+                                                          context,
+                                                          widget.product!
+                                                              .choiceOptions!,
+                                                          details.variationIndex,
+                                                          buyNow: 1,shippingMethodId: widget.product!.shippingMethod!.id,shippingMethodExist: widget.product!.shippingMethod!.id)
+                                                      .then((value) {
+                                                    if (value.response!
+                                                            .statusCode ==
+                                                        200) {
+                                                      _buyNow(
+                                                          cart,
+                                                          Get.context!,
+                                                          widget.product!
+                                                              .choiceOptions!,
+                                                          details.variationIndex,
+                                                          value.response);
+                                                    }
+                                                  });
+                                                }
                                               }
-                                            }
-                                            );
-                                      }
-                                      )
-                                      )
-                                      ,
-                                      const SizedBox(
-                                          width: Dimensions.paddingSizeDefault),
-                                      Expanded(
-                                        child: CustomButton(
-                                            radius: 6,
-                                            buttonText: getTranslated(
-                                                stock == 0 &&
+                                              );
+                                        }
+                                        )
+                                        )
+                                        ,
+                                        const SizedBox(
+                                            width: Dimensions.paddingSizeDefault),
+                                        Expanded(
+                                          child: CustomButton(
+                                              radius: 6,
+                                              buttonText: getTranslated(
+                                                  stock == 0 &&
+                                                          widget.product!
+                                                                  .productType ==
+                                                              "physical"
+                                                      ? 'out_of_stock'
+                                                      : 'add_to_cart',
+                                                  context),
+                                              onTap: () {
+                                                if (stock! <
                                                         widget.product!
-                                                                .productType ==
-                                                            "physical"
-                                                    ? 'out_of_stock'
-                                                    : 'add_to_cart',
-                                                context),
-                                            onTap: () {
-                                              if (stock! <
-                                                      widget.product!
-                                                          .minimumOrderQty! &&
-                                                  widget.product!.productType ==
-                                                      "physical") {
-                                                showCustomSnackBar(
-                                                    getTranslated(
-                                                        'out_of_stock',
-                                                        context),
-                                                    context);
-                                              } else if (stock >=
-                                                      widget.product!
-                                                          .minimumOrderQty! ||
-                                                  widget.product!.productType ==
-                                                      "digital") {
-                                                Provider.of<CartController>(
-                                                        context,
-                                                        listen: false)
-                                                    .addToCartAPI(
-                                                        cart,
-                                                        context,
+                                                            .minimumOrderQty! &&
+                                                    widget.product!.productType ==
+                                                        "physical") {
+                                                  showCustomSnackBar(
+                                                      getTranslated(
+                                                          'out_of_stock',
+                                                          context),
+                                                      context);
+                                                } else if (stock >=
                                                         widget.product!
-                                                            .choiceOptions!,
-                                                        details.variationIndex);
-                                              }
-                                            }),
-                                      ),
-                                    ],
+                                                            .minimumOrderQty! ||
+                                                    widget.product!.productType ==
+                                                        "digital") {
+                                                  Provider.of<CartController>(
+                                                          context,
+                                                          listen: false)
+                                                      .addToCartAPI(
+                                                          cart,
+                                                          context,
+                                                          widget.product!
+                                                              .choiceOptions!,
+                                                          details.variationIndex);
+                                                }
+                                              }),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                            ),
                   ]);
             },
           ),
