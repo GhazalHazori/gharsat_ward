@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gharsat_ward/features/cart/screens/cart_screen.dart';
 import 'package:gharsat_ward/features/dashboard/screens/dashboard_screen.dart';
 import 'package:gharsat_ward/features/product/controllers/product_controller.dart';
 import 'package:gharsat_ward/features/product/controllers/seller_product_controller.dart';
@@ -7,7 +8,6 @@ import 'package:gharsat_ward/features/product_details/widgets/bottom_cart_widget
 import 'package:gharsat_ward/features/product_details/widgets/product_image_widget.dart';
 import 'package:gharsat_ward/features/product_details/widgets/product_specification_widget.dart';
 import 'package:gharsat_ward/features/product_details/widgets/product_title_widget.dart';
-import 'package:gharsat_ward/features/product_details/widgets/promise_widget.dart';
 import 'package:gharsat_ward/features/product_details/widgets/related_product_widget.dart';
 import 'package:gharsat_ward/features/product_details/widgets/review_and_specification_widget.dart';
 import 'package:gharsat_ward/features/product_details/widgets/shop_info_widget.dart';
@@ -105,6 +105,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                   (route) => false);
             }
           },
+          showResetIcon: true,
+          reset: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: IconButton(onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const CartScreen()
+                  ));
+            }, icon: const Icon(Icons.shopping_cart_outlined)),
+          ),
         ),
         body: RefreshIndicator(
           onRefresh: () async => _loadData(context),
