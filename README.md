@@ -6,7 +6,7 @@ A new Flutter setup application for starting a project.
 
 This project is a starting point for a Flutter application.
 
-## Flutter SDK : 3.27.4
+## Flutter SDK : 3.32.1
 ## Deliveryman : 4.1
 
 A few resources to get you started if this is your first Flutter project:
